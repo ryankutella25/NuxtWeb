@@ -1,0 +1,43 @@
+body{
+    margin: 0px !important;
+    background-color: #121212;
+}
+
+.fullWidth {
+    background-color: #222222;
+    height: auto;
+    width: 100vw;
+}
+
+.cityImg {
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  }
+
+  .projectDiv{
+    padding-inline: 20px;
+    padding-top: 10px;
+    max-width: 1200px;
+    margin-inline: auto;
+    background-color: #121212   
+  }
+
+  .projectText{
+    font-size: 16px;
+  }
+
+.projectCarousel{
+    margin-top: -10px;
+    display: flex;
+    flex-direction: row;
+    height: 350px;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.projectItem{
+    /* width: 300px; */
+    position: relative;
+    padding-inline: 10px;
+    transition: all ease .5s;
+}

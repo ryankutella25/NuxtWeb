@@ -1,0 +1,64 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  padding-inline: 20px;
+  align-items: center;
+  background-color: #121212
+}
+
+.leftHeader {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.titleText{
+    font-size: 14px;
+    cursor: default;
+    /* background: url(Blue.png) 0 0 / cover no-repeat; */
+    color: #ddd;
+    /* -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; */
+}
+
+.middleHeader {
+  flex: 4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tabText {
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #ddd;
+    /* background: url(Blue.png) 0 0 / cover no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; */
+}
+
+.tabTextActive {
+  color: cyan;
+}
+
+.tabText:hover {
+    text-decoration: underline;
+}
+.tabTextActive:hover {
+    text-decoration: underline;
+}
+
+.rightHeader {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
