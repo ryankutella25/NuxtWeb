@@ -1,16 +1,18 @@
 .projectPageContainer{
     background-color: #222222;
     width: 100%;
-    height: 90vw;
+    height: 100vh;
 }
 
 .projectContainer{
     display: flex;
     width: 90%;
     margin-inline: auto;
-    height: auto;
+    height: 100%;
     flex-wrap: wrap;
     overflow: hidden;
+    justify-content: center;
+    align-content: flex-start;
 }
 
 .background{
@@ -18,23 +20,22 @@
     word-wrap: break-word; 
     word-break: break-all; 
     width: 100%; 
-    height: 90vw; 
+    height: 100%; 
     overflow: hidden;
     z-index: 1;
     color: #000;
 }
 
 .card {
+    flex: 0 0 400px;
     background-color: #121212;
     margin-inline: auto;
     display: flex;
     flex-direction: column;
-    min-width: 300px;
-    width: 400px;
     height: 300px;
     border-radius: 10px;
+    margin: 20px;
     padding: 20px;
     box-shadow: #0009 0px 4px 10px 0px;
-    margin-block: 20px;
     z-index: 2;
   }

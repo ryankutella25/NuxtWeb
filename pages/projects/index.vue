@@ -11,13 +11,41 @@
       items.push({});
     }
 
+
+onMounted(() => {
+  fixBackgroundHeight(),
+  //fixes carousel after resizing window
+  window.addEventListener("resize", () => {
+    fixBackgroundHeight();
+  }),
+  //fixes carousel when going fullscreen
+  window.addEventListener("fullscreenchange", function() {
+    fixBackgroundHeight();
+  });
+})
+
+
+//fixes carousel and lets active item be on screen
+function fixBackgroundHeight(){
+  var projectsBackground = document.getElementById("projectsBackground");
+  if(projectsBackground==null){
+    return;
+  }
+  var projectContainer = document.getElementById("projectContainer");
+  if(projectContainer==null){
+    return;
+  }
+
+  projectsBackground.style.height = projectContainer.offsetHeight+'px';
+}
+
 </script>
 
 <template>
   <div class="projectPageContainer">
-    <div class="background" ><span v-for="item in items" style="font-weight: bolder;"> &lt;Ryan_Kutella&gt; </span></div>
+    <div class="background" id="projectsBackground"><span v-for="item in items" style="font-weight: bolder;"> &lt;Ryan_Kutella&gt; </span></div>
     <!-- This page correctly has only one single root element -->
-    <div class="projectContainer">
+    <div class="projectContainer" id="projectContainer">
       <div class="card" v-for="item in projects">
 
       </div>

@@ -10,6 +10,5 @@
     <MainHeader class="mainHeader"/> <!-- Header (in components) --> 
     <NuxtPage /> <!-- Page Content (in pages) -->
 
-    
   </div>
 </template>

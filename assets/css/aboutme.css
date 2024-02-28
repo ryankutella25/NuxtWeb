@@ -6,6 +6,8 @@
     flex-direction: column;
 }
 
+
+
 .about1{
     display: flex;
     flex: 1;
@@ -50,7 +52,7 @@
     border-radius: 80px 0px 80px 0px;
     background-color: #242424;
     box-shadow: #000b 0px 4px 10px 0px;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
 }
 
 .about2_1{
@@ -78,8 +80,32 @@
     padding: 60px;
     background-color: #121212;
     box-shadow: #0009 0px 4px 10px 0px;
-    margin-block: 40px;
     color: #ccc;
     border-radius: 10px;
     margin-inline: 100px;
+}
+
+@media only screen and (max-width: 800px) {
+    .about1{
+      flex-direction: column-reverse;
+      margin-inline: min(3%,30px);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .about1_1{
+      padding-block: 15px;
+    }
+    .about2_1{
+      display: none;
+    }
+    .about2{
+        border-radius: 40px 0px 40px 0px;
+        font-size: 14px;
+        margin-bottom: 40px;
+    }
+    .about3{
+        margin-inline: min(3%,30px);
+        font-size: 14px;
+        padding: 10px;
+    }
 }
