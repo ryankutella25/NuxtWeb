@@ -1,0 +1,49 @@
+.mobileHeaderContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-inline: 20px;
+    padding-block: 5px;
+}
+
+.mobileTitle{
+    width: auto;
+}
+
+.slideInPage{
+    display: flex;
+    /* width in MobileHeader.vue */
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mobileTabs{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.mobileTabText{
+    width: max-content;
+    margin-block: 10px;
+}
+
+.mobileSocials{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.socialButton{
+    width: min-content;
+    margin-block: 10px;
+    align-items: center;
+    justify-content: left;
+}
+
