@@ -1,78 +1,62 @@
 <script setup lang="ts">
 
     import '~/assets/css/main.css';
-    const items = [{
-      src : 'https://picsum.photos/600/600?random=1',
-      active : true,
-      itemNum : 0,
-    },
-    {
-      src : 'https://picsum.photos/600/600?random=2',
-      active : false,
-      itemNum : 1,
-    },
-    {
-      src : 'https://picsum.photos/600/600?random=3',
-      active : false,
-      itemNum : 2,
-    },
-    {
-      src : 'https://picsum.photos/600/600?random=4',
-      active : false,
-      itemNum : 3,
-    },
-    {
-      src : 'https://picsum.photos/600/600?random=3',
-      active : false,
-      itemNum : 4,
-    },
-    {
-      src : 'https://picsum.photos/600/600?random=4',
-      active : false,
-      itemNum : 5,
-    }
-]
 
-const carouselRef = ref(0)
-const isPaused = ref(false)
-const oneStop = ref(false)
+    import projects from "~/components/projects.js";
+
+
+const carouselRef = ref(0); //which item is active
+const isPaused = ref(false) //true when carousel paused
+const oneStop = ref(false)  //true one cycle after pressing next/prev
 
 onMounted(() => {
+  //fixes carousel after resizing window
   window.addEventListener("resize", () => {
     shiftCarousel();
   }),
+  //fixes carousel when going fullscreen
+  window.addEventListener("fullscreenchange", function() {
+    shiftCarousel();
+  });
+  //automatically goes through carousel
   setInterval(() => {
     if(isPaused.value===false&&oneStop.value===false){
-      carouselRef.value = (carouselRef.value+1)%items.length;
+      carouselRef.value = (carouselRef.value+1)%projects.length;
       shiftCarousel();
     }
     oneStop.value=false;
   }, 3000)
 })
 
+//goes to item to left in carousel
 function onPrev(){
   oneStop.value = true;
-  carouselRef.value=(carouselRef.value-1+items.length)%items.length;
+  carouselRef.value=(carouselRef.value-1+projects.length)%projects.length;
   shiftCarousel();
 }
 
+//goes to item to right in carousel
 function onNext(){
   oneStop.value = true;
-  carouselRef.value=(carouselRef.value+1+items.length)%items.length;
+  carouselRef.value=(carouselRef.value+1+projects.length)%projects.length;
   shiftCarousel();
 }
 
+//fixes carousel and lets active item be on screen
 function shiftCarousel(){
   var carouselDiv = document.getElementById("carousel");
   if(carouselDiv==null){
     return;
   }
 
-  var width = carouselDiv.clientWidth;
-  var itemsWidth = (items.length-1)*200+300;
+  var activeItemWidth = 320;
+  var normalItemWidth = 220;
+
+  var width = carouselDiv.clientWidth;  //width of carousel
+  var itemsWidth = (projects.length-1)*normalItemWidth+activeItemWidth; //width of all items
   if(itemsWidth>width){//if greater we need to shift
     var offset;
-    var itemWidthToRight = (items.length-carouselRef.value-1)*200+300;
+    var itemWidthToRight = (projects.length-carouselRef.value-1)*normalItemWidth+activeItemWidth; //width to right of active item (including active item)
 
     if(itemWidthToRight>width){//active element on left
       offset=itemsWidth-itemWidthToRight;
@@ -80,14 +64,13 @@ function shiftCarousel(){
       offset=itemsWidth-width;
     }
 
-    for(var i = 0; i < items.length; i++){
-      var string = "image"+items[i].itemNum;
+    for(var i = 0; i < projects.length; i++){
+      var string = "image"+projects[i].itemNum;
       var temp = document.getElementById(string);
       if(temp!=null){
         temp.style.left = "-"+offset+"px";
       }
     }
-
   }
 }
 
@@ -96,18 +79,25 @@ function shiftCarousel(){
 <template>
   <div>
     <!-- This page correctly has only one single root element -->
-    <img class="cityImg" src="/AdobeStock_294490632.jpeg"/>
+    <div class="cityImg">
+      <div class="infoContainer">
+        <div style="font-size: 21px;text-align: center;">WELCOME TO MY WEBSITE,</div>
+        <div style="font-size: 29px;text-align: center;">I AM <span style="font-size: 29px; font-weight: bolder;text-align: center;color: cyan;">RYAN KUTELLA</span></div>
+        <div style="font-size: 19px;text-align: center;">CS STUDENT @ U of ALABAMA</div>
+      </div>
+    </div>
     <div class="projectDiv">
       <h2 class="projectText">Projects</h2>
       <div id="carouselHolder" class="carouselHolder">
         <div id="carousel" class="projectCarousel">
-          <img v-for="item in items" :id="'image'+item.itemNum" :src="item.src" class="projectItem" :width="item.itemNum==carouselRef ? '300px' : '200px'">
+          <div v-for="item in projects" :id="'image'+item.itemNum" :class="[item.itemNum==carouselRef ? 'projectItemActive' : '','projectItem']"></div>
         </div>
       </div>
-      <UButton @click="onPrev()">Prev</UButton>
-      <UButton @click="isPaused=true">Pause</UButton>
-      <UButton @click="isPaused=false">Play</UButton>
-      <UButton @click="onNext()">Next</UButton>
+      <div class="carouselButtons">
+        <UButton variant="outline" color="cyan" @click="onPrev()">Prev</UButton>
+        <UButton color="cyan" @click="isPaused=!isPaused">{{isPaused?"Play":"Pause"}}</UButton>
+        <UButton variant="outline" color="cyan" @click="onNext()">Next</UButton>
+      </div>
     </div>
 
   </div>

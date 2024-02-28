@@ -44,14 +44,11 @@
     -webkit-text-fill-color: transparent; */
 }
 
-.tabTextActive {
+.router-link-active{
   color: cyan;
 }
 
 .tabText:hover {
-    text-decoration: underline;
-}
-.tabTextActive:hover {
     text-decoration: underline;
 }
 
