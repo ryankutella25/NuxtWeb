@@ -3,6 +3,20 @@ body{
     background-color: #121212;
 }
 
+.burger{
+  display: none;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .burger{
+    display: block;
+  }
+  .mainHeader{
+    display: none;
+  }
+}
+
 .fullWidth {
     background-color: #191919;
     height: min-content;
