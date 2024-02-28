@@ -2,6 +2,8 @@
 
     import '~/assets/css/projects.css';
 
+    import projects from "~/components/projects.js";
+
     //items are project items in carousel
     const items = [{}]
 
@@ -13,26 +15,11 @@
 
 <template>
   <div class="projectPageContainer">
-    <div class="background" ><span v-for="item in items">Ryan Kutella </span></div>
+    <div class="background" ><span v-for="item in items" style="font-weight: bolder;"> &lt;Ryan_Kutella&gt; </span></div>
     <!-- This page correctly has only one single root element -->
     <div class="projectContainer">
-      <div class="card">
+      <div class="card" v-for="item in projects">
 
-      </div>
-      <div class="card">
-        
-      </div>
-      <div class="card">
-        
-      </div>
-      <div class="card">
-
-      </div>
-      <div class="card">
-        
-      </div>
-      <div class="card">
-        
       </div>
     </div>
   </div>
