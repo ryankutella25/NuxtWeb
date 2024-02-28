@@ -42,7 +42,6 @@ function onNext(){
 
 //fixes carousel and lets active item be on screen
 function shiftCarousel(){
-  console.log("RUNING")
   var carouselHolder = document.getElementById("carouselHolder");
   if(carouselHolder==null){
     return;
