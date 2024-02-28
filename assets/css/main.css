@@ -79,6 +79,7 @@ body{
 
 .projectItem{
     position: relative;
+    transition: all .3s;
     margin-inline: 10px;
     border: solid 1px white;
     height: 200px;
@@ -88,7 +89,7 @@ body{
 .projectItemActive{
   position: relative;
   margin-inline: 10px;
-  transition: all ease-in .3s;
+  transition: all .3s;
   border: solid 1px white;
   height: 300px;
   flex: 0 0 300px;
