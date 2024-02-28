@@ -57,34 +57,38 @@ body{
   }
 
   .projectText{
+    margin-left: 10px;
+    margin-top: 5px;
     font-size: 16px;
   }
 
+.carouselHolder{
+  overflow: hidden;
+}
+
 .projectCarousel{
+  position: relative;
     margin-top: -10px;
     display: flex;
     flex-direction: row;
     height: 350px;
     align-items: center;
     justify-content: flex-start;
-    overflow: hidden; 
+    transition: all ease .5s;
 }
 
 .projectItem{
-    /* width: 300px; */
     position: relative;
     margin-inline: 10px;
-    transition: all ease .5s;
     border: solid 1px white;
     height: 200px;
     flex: 0 0 200px;
 }
 
 .projectItemActive{
-  /* width: 300px; */
   position: relative;
   margin-inline: 10px;
-  transition: all ease .5s;
+  transition: all ease-in .3s;
   border: solid 1px white;
   height: 300px;
   flex: 0 0 300px;

@@ -9,24 +9,22 @@ const carouselRef = ref(0); //which item is active
 const isPaused = ref(false) //true when carousel paused
 const oneStop = ref(false)  //true one cycle after pressing next/prev
 
-onMounted(() => {
-  //fixes carousel after resizing window
-  window.addEventListener("resize", () => {
-    shiftCarousel();
-  }),
-  //fixes carousel when going fullscreen
-  window.addEventListener("fullscreenchange", function() {
-    shiftCarousel();
-  });
-  //automatically goes through carousel
-  setInterval(() => {
-    if(isPaused.value===false&&oneStop.value===false){
-      carouselRef.value = (carouselRef.value+1)%projects.length;
-      shiftCarousel();
-    }
-    oneStop.value=false;
-  }, 3000)
-})
+// const interval = ref();
+// const intervals = [0]
+
+// onMounted(() => {
+//   //fixes carousel after resizing window
+//   //automatically goes through carousel
+//   for(let i = 0; i<intervals.length; i++) clearInterval(intervals[i]);
+//   intervals.push(window.setInterval(() => {
+//       if(isPaused.value===false&&oneStop.value===false){
+//         carouselRef.value = (carouselRef.value+1)%projects.length;
+//         shiftCarousel();
+//       }
+//       oneStop.value=false;
+//     }, 3000)
+//   )
+// })
 
 //goes to item to left in carousel
 function onPrev(){
@@ -44,33 +42,48 @@ function onNext(){
 
 //fixes carousel and lets active item be on screen
 function shiftCarousel(){
-  var carouselDiv = document.getElementById("carousel");
-  if(carouselDiv==null){
+  console.log("RUNING")
+  var carouselHolder = document.getElementById("carouselHolder");
+  if(carouselHolder==null){
     return;
   }
 
   var activeItemWidth = 320;
   var normalItemWidth = 220;
 
-  var width = carouselDiv.clientWidth;  //width of carousel
+  var width = carouselHolder.clientWidth;  //width of carousel
+  // console.log(width);
   var itemsWidth = (projects.length-1)*normalItemWidth+activeItemWidth; //width of all items
+  // console.log(itemsWidth);
+
   if(itemsWidth>width){//if greater we need to shift
     var offset;
     var itemWidthToRight = (projects.length-carouselRef.value-1)*normalItemWidth+activeItemWidth; //width to right of active item (including active item)
 
-    if(itemWidthToRight>width){//active element on left
+    if(itemWidthToRight>width||width<800){//active element on left
       offset=itemsWidth-itemWidthToRight;
     }else{//last item on right
       offset=itemsWidth-width;
     }
 
-    for(var i = 0; i < projects.length; i++){
-      var string = "image"+projects[i].itemNum;
-      var temp = document.getElementById(string);
-      if(temp!=null){
-        temp.style.left = "-"+offset+"px";
-      }
+    var negative = "-";
+
+    if(width<800){//want object in middle
+      offset = offset - (width-320)/2;
+
+      if(offset<0) {
+        offset = (width-320)/2;
+        negative = "";
+      };
+
     }
+
+    var carousel = document.getElementById("carousel");
+    if(carousel==null){
+      console.log("HUH")
+      return;
+    }
+    carousel.style.left = negative+offset+"px";
   }
 }
 
@@ -95,7 +108,7 @@ function shiftCarousel(){
       </div>
       <div class="carouselButtons">
         <UButton variant="outline" color="cyan" @click="onPrev()">Prev</UButton>
-        <UButton color="cyan" @click="isPaused=!isPaused">{{isPaused?"Play":"Pause"}}</UButton>
+        <!-- <UButton color="cyan" @click="isPaused=!isPaused">{{isPaused?"Play":"Pause"}}</UButton> -->
         <UButton variant="outline" color="cyan" @click="onNext()">Next</UButton>
       </div>
     </div>

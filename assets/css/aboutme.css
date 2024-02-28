@@ -83,6 +83,7 @@
     color: #ccc;
     border-radius: 10px;
     margin-inline: 100px;
+    margin-bottom: 30px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -107,5 +108,6 @@
         margin-inline: min(3%,30px);
         font-size: 14px;
         padding: 10px;
+        margin-bottom: 30px;
     }
 }
