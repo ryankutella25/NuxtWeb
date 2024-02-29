@@ -31,12 +31,12 @@ function fixBackgroundHeight(){
   if(projectsBackground==null){
     return;
   }
-  var projectContainer = document.getElementById("projectContainer");
-  if(projectContainer==null){
+  var body = document.body;
+  if(body==null){
     return;
   }
 
-  projectsBackground.style.height = projectContainer.offsetHeight+'px';
+  projectsBackground.style.height = body.offsetHeight+'px';
 }
 
 </script>

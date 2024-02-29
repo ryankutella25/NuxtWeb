@@ -1,11 +1,12 @@
 .container{
     max-width: min(1400px,95%);
     margin-inline: auto;
-    margin-top: 30px;
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     font-size: 20px;
     height: max(100%,max-content);
+    background-color: #202020;
 }
 
 
@@ -24,7 +25,8 @@
     padding-block: 40px;
     padding-inline: 20px;
     background-color: #121212;
-    box-shadow: #0009 0px 4px 10px 0px;
+    /* box-shadow: #4449 0px 4px 10px 0px; */
+    border: 1px solid #ccc;
     border-radius: 10px;
     vertical-align: middle;
     color: #ccc;
@@ -52,8 +54,8 @@
     align-items: center;
     margin-block: 20px ;
     border-radius: 80px 0px 80px 0px;
-    background-color: #242424;
-    box-shadow: #000b 0px 4px 10px 0px;
+    background-color: #454545;
+    box-shadow: #0009 0px 4px 10px 0px;
     margin-bottom: 70px;
 }
 
@@ -81,11 +83,12 @@
     flex: 1;
     padding: 60px;
     background-color: #121212;
-    box-shadow: #0009 0px 4px 10px 0px;
+    /* box-shadow: #0009 0px 4px 10px 0px; */
     color: #ccc;
     border-radius: 10px;
     margin-inline: 100px;
     margin-bottom: 30px;
+    border: 1px solid #ccc;
 }
 
 @media only screen and (max-width: 800px) {

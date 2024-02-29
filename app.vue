@@ -8,7 +8,7 @@
 
     <MobileHeader class="mobileHeader"/>
     <MainHeader class="mainHeader"/> <!-- Header (in components) --> 
-    <NuxtPage /> <!-- Page Content (in pages) -->
+    <NuxtPage style="height: 100%;"/> <!-- Page Content (in pages) -->
 
   </div>
 </template>

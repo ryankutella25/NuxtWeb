@@ -1,6 +1,11 @@
+html{
+  min-height:100%;
+}
 body{
     margin: 0px !important;
-    background-color: #121212;
+    background-color: #202020;
+    min-height:100%;
+    height: 100vh;
 }
 
 .mainContainer{
@@ -22,8 +27,8 @@ body{
 }
 
 .fullWidth {
-    background-color: #191919;
-    height: min-content;
+    background-color: #202020;
+    height: 100%;
     width: 100%;
 }
 

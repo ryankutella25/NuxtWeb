@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <div>
+  <div style="background-color: #202020;">
     <div class="container">
             <div class="about1">
                 <div class="about1_1">I am <span style="font-weight: bold; color: cyan;">Ryan Kutella</span> from Elk Grove Village, IL. 
