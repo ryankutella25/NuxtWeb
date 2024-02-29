@@ -33,12 +33,20 @@ import projects from "~/components/projects.js";
     if(projectsBackground==null){
       return;
     }
+
+    var projectsPage = document.getElementById("projectPageContainer");
+    if(projectsPage==null){
+      return;
+    }
+
     var body = document.body;
     if(body==null){
       return;
     }
 
-    projectsBackground.style.height = body.offsetHeight+'px';
+    if(projectsPage.offsetHeight>body.offsetHeight) projectsBackground.style.height = projectsPage.offsetHeight+'px';
+    else projectsBackground.style.height = body.offsetHeight+'px';
+    
   }
 
   const sortedProjects = computed(() => {
@@ -77,7 +85,7 @@ import projects from "~/components/projects.js";
 </script>
 
 <template>
-  <div class="projectPageContainer">
+  <div class="projectPageContainer" id="projectPageContainer">
     <div class="background" id="projectsBackground"><span v-for="item in items" style="font-weight: bolder;"> &lt;Ryan_Kutella&gt; </span></div>
     <!-- This page correctly has only one single root element -->
     <div class="selectMenuContainer">

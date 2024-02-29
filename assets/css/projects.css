@@ -42,14 +42,14 @@
 
   .selectMenuContainer{
     display: flex;
-    width: 400px;
+    width: min(400px,90%);
     margin-inline: auto;
     padding-top: 15px;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .selectMenus{
-    width: 180px;
+    width: 45%;
     display: flex;
     background-color: #121212;
     z-index: 30;
