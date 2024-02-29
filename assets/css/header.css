@@ -16,7 +16,7 @@
 }
 
 .titleText{
-    font-size: 14px;
+    font-size: 16px;
     cursor: default;
     /* background: url(Blue.png) 0 0 / cover no-repeat; */
     color: #ddd;
@@ -34,7 +34,7 @@
 }
 
 .tabText {
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
     cursor: pointer;
     color: #ddd;
