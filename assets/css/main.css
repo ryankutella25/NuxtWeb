@@ -3,6 +3,10 @@ body{
     background-color: #121212;
 }
 
+.mainContainer{
+  height: max(100%,max-content);
+}
+
 .mobileHeader{
   display: none;
 }

@@ -1,7 +1,7 @@
 .projectPageContainer{
     background-color: #222222;
     width: 100%;
-    height: max(100vh,auto);
+    height: max(100%,max-content);
 }
 
 .projectContainer{

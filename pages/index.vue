@@ -89,7 +89,7 @@ function shiftCarousel(){
 </script>
 
 <template>
-  <div>
+  <div class="mainContainer">
     <!-- This page correctly has only one single root element -->
     <div class="cityImg">
       <div class="infoContainer">
