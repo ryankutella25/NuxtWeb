@@ -4,6 +4,7 @@
     margin-top: 30px;
     display: flex;
     flex-direction: column;
+    font-size: 20px;
 }
 
 
@@ -90,7 +91,7 @@
     .about1{
       flex-direction: column-reverse;
       margin-inline: min(3%,30px);
-      font-size: 14px;
+      font-size: 18px;
       margin-bottom: 20px;
     }
     .about1_1{
@@ -101,12 +102,12 @@
     }
     .about2{
         border-radius: 40px 0px 40px 0px;
-        font-size: 14px;
+        font-size: 16px;
         margin-bottom: 40px;
     }
     .about3{
         margin-inline: min(3%,30px);
-        font-size: 14px;
+        font-size: 16px;
         padding: 10px;
         margin-bottom: 30px;
     }
