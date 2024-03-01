@@ -2,6 +2,9 @@
     import '~/assets/css/projects.css';
 import projects from "~/components/projects.js";
 
+    const isOpen = ref([false]);
+    for(let i = 1; i < projects.length; i++) isOpen.value.push(false);
+
     //items are project items in carousel
     const items = [{}]
 
@@ -112,5 +115,13 @@ import projects from "~/components/projects.js";
         </div>
       </div>
     </div>
+
+    <!-- Just modals below -->
+    <UModal v-for="item in projects" v-model="isOpen[item.itemNum]">
+      <div class="p-4">
+        {{ item.name }}
+      </div>
+    </UModal>
+
   </div>
 </template>

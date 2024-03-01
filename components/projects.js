@@ -1,40 +1,41 @@
 
 const items = [{
-    src: 'https://picsum.photos/600/600?random=1',
+    name: "Project 1",
     tech: ['Java','Python'],
     type: 'Personal',
-    active: true,
+    quickDesc: 'React App that helps log workouts',
     itemNum: 0,
+    isOpen: false,
   },
   {
-    src: 'https://picsum.photos/600/600?random=2',
+    name: "Project 2",
     tech: ['Java','Python'],
     type: 'Personal',
-    active: false,
     itemNum: 1,
+    isOpen: false,
   },
   {
-    src: 'https://picsum.photos/600/600?random=3',
+    name: "Project 3",
     tech: ['Java'],
-    active: false,
     itemNum: 2,
+    isOpen: false,
   },
   {
-    src: 'https://picsum.photos/600/600?random=4',
+    name: "Project 4",
     tech: ['Python'],
-    active: false,
     itemNum: 3,
+    isOpen: false,
   },
   {
-    src: 'https://picsum.photos/600/600?random=3',
-    active: false,
+    name: "Project 5",
     type: 'Personal',
     itemNum: 4,
+    isOpen: false,
   },
   {
-    src: 'https://picsum.photos/600/600?random=4',
-    active: false,
+    name: "Project 6",
     itemNum: 5,
+    isOpen: false,
   }
 ]
 
