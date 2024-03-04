@@ -152,74 +152,8 @@ export default defineAppConfig({
       
     },
     uiMenu: {
-        SelectMenu: {
-            container: 'z-20 group',
-            trigger: 'inline-flex w-full',
-            width: 'w-full',
-            height: 'max-h-60',
-            base: 'relative focus:outline-none overflow-y-auto scroll-py-1',
-            background: 'bg-gray-50',
-            shadow: 'shadow-lg',
-            rounded: 'rounded-md',
-            padding: 'p-1',
-            ring: 'ring-blue-500',
-            empty: 'text-sm text-gray-500 px-2 py-1.5',
-            option: {
-              base: 'cursor-default select-none relative flex items-center justify-between gap-1',
-              rounded: 'rounded-md',
-              padding: 'px-1.5 py-1.5',
-              size: 'text-sm',
-              color: 'text-white',
-              container: 'flex items-center gap-1.5 min-w-0',
-              active: 'bg-gray-50',
-              inactive: '',
-              selected: 'pe-7',
-              disabled: 'cursor-not-allowed opacity-50',
-              empty: 'text-sm text-gray-500 px-2 py-1.5',
-              icon: {
-                base: 'flex-shrink-0 h-5 w-5',
-                active: 'text-white',
-                inactive: 'ttext-gray-500',
-              },
-              selectedIcon: {
-                wrapper: 'absolute inset-y-0 end-0 flex items-center',
-                padding: 'pe-2',
-                base: 'h-5 w-5 text-white flex-shrink-0',
-              },
-              avatar: {
-                base: 'flex-shrink-0',
-                size: '2xs',
-              },
-              chip: {
-                base: 'flex-shrink-0 w-2 h-2 mx-1 rounded-full',
-              },
-              create: 'block truncate',
-            },
-            transition: {
-              leaveActiveClass: 'transition ease-in duration-100',
-              leaveFromClass: 'opacity-100',
-              leaveToClass: 'opacity-0',
-            },
-            popper: {
-              placement: 'bottom-end',
-            },
-            default: {
-              selectedIcon: 'i-heroicons-check-20-solid',
-              clearSearchOnClose: false,
-              showCreateOptionWhen: 'empty',
-            },
-            arrow: {
-              base: 'invisible before:visible before:block before:rotate-45 before:z-[-1] before:w-2 before:h-2',
-              ring: 'before:ring-1 before:ring-gray-200 dark:before:ring-gray-700',
-              rounded: 'before:rounded-sm',
-              background: 'before:bg-gray-700',
-              shadow: 'before:shadow',
-              placement: "group-data-[popper-placement*='right']:-left-1 group-data-[popper-placement*='left']:-right-1 group-data-[popper-placement*='top']:-bottom-1 group-data-[popper-placement*='bottom']:-top-1",
-            },
-            select: 'inline-flex items-center text-left cursor-default',
-            input: 'block w-[calc(100%+0.5rem)] focus:ring-transparent text-sm px-3 py-1.5 text-gray-200 bg-gray-50 border-0 border-b border-gray-50 sticky -top-1 -mt-1 mb-1 -mx-1 z-10 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none',
-            required: 'absolute inset-0 w-px opacity-0 cursor-default',
-            label: 'block truncate',
-        }
+      selectMenu:{
+            color:'black'
+      }
     }
 })

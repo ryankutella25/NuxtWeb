@@ -2,13 +2,14 @@
 import "~/assets/css/projects.css";
 import projects from "~/components/projects.js";
 
-const isOpen = ref([false]);  //array of booleans to say if modal is open for each project
-for (let i = 1; i < projects.length; i++) isOpen.value.push(false); //fill to size of projects
-
 //languages selected holds value from languages, used in sorting
 const languagesSelected = ref([]);
 const languages = ["Java", "Python"];
 
+//modal stuff below
+const modalActive = ref(false);
+const currentProject = useProjectOpen();
+if(currentProject.value.itemNum!=100) modalActive.value = true;
 
 //type selected holds value from languages, used in sorting
 const typesSelected = ref([]);
@@ -47,6 +48,11 @@ const sortedProjects = computed(() => {
   });
 });
 
+const seeMore = (itemNum: Number) => {
+  currentProject.value = projects[itemNum.valueOf()];
+  modalActive.value = true;
+}
+
 </script>
 
 <template>
@@ -61,6 +67,7 @@ const sortedProjects = computed(() => {
         :options="languages"
         multiple
         placeholder="Technology"
+        :popper="{ offsetDistance: 0 }"
       >
         <template #label>
           <span v-if="languagesSelected.length" class="truncate">
@@ -77,6 +84,7 @@ const sortedProjects = computed(() => {
         :options="projectType"
         multiple
         placeholder="Personal/School"
+        :popper="{ offsetDistance: 0}"
       >
         <template #label>
           <span v-if="typesSelected.length" class="truncate">
@@ -89,18 +97,31 @@ const sortedProjects = computed(() => {
 
     <div class="projectContainer" id="projectContainer">
       <div class="card" v-for="item in sortedProjects">
-        {{ item.itemNum }}
-        <div v-for="tech in item.tech">
-          {{ tech }}
+        <Icon class="expand" @click="seeMore(item.itemNum)" name="flowbite:expand-solid" color="#bbb" size="25px"/>
+        <div style="flex: 1;" class="projectItemTitle">{{ item.name }}</div>
+        <div style="flex: 5" class="projectItemText">{{ item.longDesc }}</div>
+        <div style="flex: 1" class="projectItemText">Used: {{ item.tech?.join(", ") }}</div>
+        <div>
+          <UButton class="projectButton" v-if="item.goTo!=null" variant="solid" color="cyan" @click="">Go To</UButton>
+          <UButton class="projectButton" v-if="item.git!=null" variant="outline" color="cyan" @click="">Git</UButton>
+          <UButton class="projectButton" v-if="item.video!=null" variant="outline" color="cyan" @click="">Vid</UButton>
         </div>
       </div>
     </div>
 
-    <!-- Just modals below -->
-    <UModal v-for="item in projects" v-model="isOpen[item.itemNum]">
-      <div class="p-4">
-        {{ item.name }}
-      </div>
+    <!-- Just project child below -->
+    <UModal v-model="modalActive">
+        <div class="modal">
+          <div style="flex: 1;" class="modalItemTitle">{{ currentProject.name }}</div>
+          <div style="flex: 5" class="modalItemText">{{ currentProject.longDesc }}</div>
+          <div style="flex: 1" class="modalItemText">Used: {{ currentProject.tech?.join(", ") }}</div>
+          <div>
+            <UButton class="projectButton" v-if="currentProject.goTo!=null" variant="solid" color="cyan" @click="">Go To</UButton>
+            <UButton class="projectButton" v-if="currentProject.git!=null" variant="outline" color="cyan" @click="">Git</UButton>
+            <UButton class="projectButton" v-if="currentProject.video!=null" variant="outline" color="cyan" @click="">Vid</UButton>
+          </div>
+        </div>
     </UModal>
+    <!-- <NuxtPage/> -->
   </div>
 </template>

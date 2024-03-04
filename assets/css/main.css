@@ -6,6 +6,7 @@ body{
     background-color: #202020;
     min-height:100%;
     height: 100vh;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .mainContainer{
@@ -93,24 +94,26 @@ body{
 .projectItem{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-block: 30px;
+    align-content: center;
+    padding-block: 10px;
     padding-inline: 10px;
     text-align: center;
+    justify-content: center;
     transition: all .3s;
     margin-inline: 10px;
     border: solid 1px white;
     height: 200px;
     flex: 0 0 200px;
     border-radius: 10px;
+    background-color: #202020;
 }
 
 .projectItemActive{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block: 30px;
-  padding-inline: 10px;
+  padding-block: 20px;
+  padding-inline: 20px;
   margin-inline: 10px;
   text-align: center;
   transition: all .3s;
@@ -119,6 +122,12 @@ body{
   flex: 0 0 300px;
   border-radius: 10px;
   background-color: #202020;
+}
+
+.projectItemText{
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
 }
 
 .carouselButtons{

@@ -18,7 +18,6 @@
 
       }
       oneStop.value=false;
-
       }, 3000)
     })
 

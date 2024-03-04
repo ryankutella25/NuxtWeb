@@ -32,12 +32,15 @@
     margin-inline: auto;
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: 400px;
     border-radius: 10px;
     margin: 20px;
-    padding: 20px;
+    padding-block: 20px;
+    padding-inline: 30px;
     box-shadow: #0009 0px 4px 10px 0px;
     z-index: 2;
+    color: #ddd;
+    text-align: center;
   }
 
   .selectMenuContainer{
@@ -54,3 +57,60 @@
     background-color: #121212;
     z-index: 30;
   }
+
+  .projectButton{
+    flex: 1;
+    margin-top: 10px; 
+    margin-inline: 5px;
+  }
+
+  .projectItemText{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .projectItemTitle{
+    margin-top: -20px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    color: cyan;
+    font-size: 22px;
+  }
+
+  .expand{
+    position: relative;
+    top: -4px;
+    left: 97%;
+    overflow: visible;
+    z-index: 10;
+  }
+
+  .modal{
+    display: flex;
+    margin-block: auto;
+    flex-direction: column;
+    height: 500px; 
+    /* width: min(700px,90vh); */
+    margin-inline: auto;
+    padding-bottom: 30px;
+    padding-inline: 40px;
+    color: #ddd;
+    text-align: center;
+   }
+
+   .modalItemTitle{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    color: cyan;
+    font-size: 28px;
+   }
+
+   .modalItemText{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 20px;
+   }

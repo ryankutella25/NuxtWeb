@@ -7,6 +7,8 @@ const carouselRef = useCarousel(); //which carousel item is active
 const isPaused = usePaused(); //true when carousel is paused
 const oneStop = useStop(); //true one cycle after pressing next/prev
 
+const currentProject = useProjectOpen();//just used when clicking see more on project carousel
+
 onMounted(() => {
   shiftCarousel(),
   //fixes carousel after resizing window
@@ -83,6 +85,17 @@ function shiftCarousel() {
     carousel.style.left = negative + offset + "px";
   }
 }
+
+//called from see more, passes in itemNum
+const toProjects = (itemNum: Number) => {
+
+  currentProject.value = projects[itemNum.valueOf()];
+
+  return navigateTo({
+    path: '/projects',
+  })
+
+}
 </script>
 
 <template>
@@ -112,19 +125,26 @@ function shiftCarousel() {
       </div>
     </div>
     <div class="projectDiv">
-      <h2 class="projectText">Projects</h2>
+      <NuxtLink class="projectText" to="/projects">Projects</NuxtLink>
       <div id="carouselHolder" class="carouselHolder">
         <div id="carousel" class="projectCarousel">
           <div
             v-for="item in projects"
-            :id="'image' + item.itemNum"
             :class="[item.itemNum == carouselRef ? 'projectItemActive' : '','projectItem',]"
-          ></div>
+          >
+            <div style="flex: 1; font-size: 18px;" class="projectItemText">{{ item.name }}</div>
+            <div v-if="item.itemNum==carouselRef" style="flex: 4" class="projectItemText">{{ item.quickDesc }}</div>
+            <div style="flex: 2;" class="projectItemText">{{ item.tech?.join(", ") }}</div>
+            <UButton v-if="item.itemNum==carouselRef" style="flex: 1; margin-top: 10px;" class="projectItemText" variant="solid" color="cyan" @click="toProjects(item.itemNum)">See More</UButton>
+          </div>
         </div>
       </div>
       <div class="carouselButtons">
         <UButton variant="outline" color="cyan" @click="onPrev()">Prev</UButton>
-        <UButton color="cyan" @click="isPaused = !isPaused">{{isPaused ? "Play" : "Pause"}}</UButton>
+        <UButton color="cyan" @click="isPaused = !isPaused">
+          <Icon v-if="isPaused" name="ph:play-bold"  color="#121212" size="24px"/>
+          <Icon v-if="!isPaused" name="ph:pause-bold"  color="#121212" size="24px"/>
+        </UButton>
         <UButton variant="outline" color="cyan" @click="onNext()">Next</UButton>
       </div>
     </div>

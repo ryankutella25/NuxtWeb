@@ -9,7 +9,7 @@
 <template>
   <div >
     <div class="mobileHeaderContainer">
-        <UButton class="burger" @click="isOpen = true" :padded="false" variant="ghost" ><Icon name="mingcute:menu-line"  color="#ddd" size="24px"/></UButton>
+        <UButton class="burger" @click="isOpen = true" color="cyan" :padded="false" variant="ghost" ><Icon name="mingcute:menu-line"  color="#ddd" size="24px"/></UButton>
 
         <div class="rightHeader">Ryan Kutella</div>
     </div>
