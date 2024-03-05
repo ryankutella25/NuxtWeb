@@ -121,7 +121,7 @@ const toProjects = (itemNum: Number) => {
             RYAN KUTELLA
           </span>
         </div>
-        <div style="font-size: 19px; text-align: center">
+        <div style="font-size: 20px; text-align: center; ">
           CS STUDENT @ U of ALABAMA
         </div>
       </div>

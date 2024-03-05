@@ -9,7 +9,7 @@ const items = [{
     wanted to showcase my web creation skills, as well as get experience with Vue & Nuxt which I haven't worked with before.`,
     goTo: '',
     video: '',
-    git: 'blank',
+    git: '',
   },
   {
     itemNum: 1,
@@ -37,20 +37,20 @@ const items = [{
     video: '',
     git: '',
   },
-  {
-    itemNum: 3,
-    name: "Project 4",
-    tech: ['Python'],
-  },
-  {
-    itemNum: 4,
-    name: "Project 5",
-    type: 'Personal',
-  },
-  {
-    itemNum: 5,
-    name: "Project 6",
-  }
+  // {
+  //   itemNum: 3,
+  //   name: "Project 4",
+  //   tech: ['Python'],
+  // },
+  // {
+  //   itemNum: 4,
+  //   name: "Project 5",
+  //   type: 'Personal',
+  // },
+  // {
+  //   itemNum: 5,
+  //   name: "Project 6",
+  // }
 ]
 
 export default items;

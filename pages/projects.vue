@@ -101,9 +101,9 @@ const seeMore = (itemNum: Number) => {
         <div style="flex: 5" class="projectItemText">{{ item.longDesc }}</div>
         <div style="flex: 1" class="projectItemText">Used: {{ item.tech?.join(", ") }}</div>
         <div>
-          <UButton class="projectButton" v-if="item.goTo!=null" variant="solid" color="cyan" @click="">Go To</UButton>
-          <UButton class="projectButton" v-if="item.git!=null" variant="outline" color="cyan" @click="">Git</UButton>
-          <UButton class="projectButton" v-if="item.video!=null" variant="outline" color="cyan" @click="">Vid</UButton>
+          <UButton class="projectButton" v-if="item.goTo!=''" :to="item.goTo" target="_blank" variant="solid" color="cyan" @click="">Go To</UButton>
+          <UButton class="projectButton" v-if="item.git!=''" :to="item.git" target="_blank" variant="outline" color="cyan" @click="">Git</UButton>
+          <UButton class="projectButton" v-if="item.video!=''" :to="item.video" target="_blank" variant="outline" color="cyan" @click="">Vid</UButton>
         </div>
       </div>
     </div>
@@ -116,9 +116,9 @@ const seeMore = (itemNum: Number) => {
           <div style="flex: 5" class="modalItemText">{{ currentProject.longDesc }}</div>
           <div style="flex: 1" class="modalItemText">Used: {{ currentProject.tech?.join(", ") }}</div>
           <div>
-            <UButton class="projectButton" v-if="currentProject.goTo!=null" variant="solid" color="cyan" @click="">Go To</UButton>
-            <UButton class="projectButton" v-if="currentProject.git!=null" variant="outline" color="cyan" @click="">Git</UButton>
-            <UButton class="projectButton" v-if="currentProject.video!=null" variant="outline" color="cyan" @click="">Vid</UButton>
+            <UButton class="projectButton" v-if="currentProject.goTo!=''" :to="currentProject.goTo" target="_blank" variant="solid" color="cyan" @click="">Go To</UButton>
+            <UButton class="projectButton" v-if="currentProject.git!=''" :to="currentProject.git" target="_blank" variant="outline" color="cyan" @click="">Git</UButton>
+            <UButton class="projectButton" v-if="currentProject.video!=''" :to="currentProject.video" target="_blank" variant="outline" color="cyan" @click="">Vid</UButton>
           </div>
         </div>
     </UModal>
