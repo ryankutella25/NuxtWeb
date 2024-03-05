@@ -68,7 +68,6 @@
       }
     }
 
-    useHead({title: 'Ryan Kutella\'s Portfolio'})
 </script>
 
 <template>
