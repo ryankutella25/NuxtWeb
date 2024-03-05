@@ -15,7 +15,7 @@
                     I've played a large role in the web development of a multi-million dollar company and have multiple other projects displaying my skills.
                 </div>
                 <div class="about1_2">
-                  <img class="aboutImage" src="/Bitmoji.png"/>
+                  <img class="aboutImage" src="/sticker.png"/>
                 </div>
                 
             </div>
