@@ -7,9 +7,8 @@ const languagesSelected = ref([]);
 const languages = ["Java", "Python"];
 
 //modal stuff below
-const modalActive = ref(false);
+const modalActive = useModalActive();
 const currentProject = useProjectOpen();
-if(currentProject.value.itemNum!=100) modalActive.value = true;
 
 //type selected holds value from languages, used in sorting
 const typesSelected = ref([]);
@@ -97,7 +96,7 @@ const seeMore = (itemNum: Number) => {
 
     <div class="projectContainer" id="projectContainer">
       <div class="card" v-for="item in sortedProjects">
-        <Icon class="expand" @click="seeMore(item.itemNum)" name="flowbite:expand-solid" color="#bbb" size="25px"/>
+        <UButton class="expand" variant="ghost" :padded="false"><Icon @click="seeMore(item.itemNum)" name="flowbite:expand-solid" color="#bbb" size="25px"/></UButton>
         <div style="flex: 1;" class="projectItemTitle">{{ item.name }}</div>
         <div style="flex: 5" class="projectItemText">{{ item.longDesc }}</div>
         <div style="flex: 1" class="projectItemText">Used: {{ item.tech?.join(", ") }}</div>
@@ -112,6 +111,7 @@ const seeMore = (itemNum: Number) => {
     <!-- Just project child below -->
     <UModal v-model="modalActive">
         <div class="modal">
+          <UButton variant="ghost" class="modalClose" :padded="false"><Icon @click="modalActive=false" name="material-symbols:close" color="#bbb" size="25px"/></UButton>
           <div style="flex: 1;" class="modalItemTitle">{{ currentProject.name }}</div>
           <div style="flex: 5" class="modalItemText">{{ currentProject.longDesc }}</div>
           <div style="flex: 1" class="modalItemText">Used: {{ currentProject.tech?.join(", ") }}</div>

@@ -64,6 +64,7 @@ body{
     background-color: #121212;
     margin-block-end: 40px;  
     border-radius: 10px;
+    color: #ddd;
   }
 
   .projectText{
@@ -141,4 +142,8 @@ body{
 
 .dontDisplay{
   display: none;
+}
+
+.seeMoreButton{
+  padding-block: 0;
 }

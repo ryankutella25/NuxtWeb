@@ -8,6 +8,7 @@ const isPaused = usePaused(); //true when carousel is paused
 const oneStop = useStop(); //true one cycle after pressing next/prev
 
 const currentProject = useProjectOpen();//just used when clicking see more on project carousel
+const modalActive = useModalActive();//just used when clicking see more on project carousel
 
 onMounted(() => {
   shiftCarousel(),
@@ -90,6 +91,7 @@ function shiftCarousel() {
 const toProjects = (itemNum: Number) => {
 
   currentProject.value = projects[itemNum.valueOf()];
+  modalActive.value = true;
 
   return navigateTo({
     path: '/projects',
@@ -135,7 +137,7 @@ const toProjects = (itemNum: Number) => {
             <div style="flex: 1; font-size: 18px;" class="projectItemText">{{ item.name }}</div>
             <div v-if="item.itemNum==carouselRef" style="flex: 4" class="projectItemText">{{ item.quickDesc }}</div>
             <div style="flex: 2;" class="projectItemText">{{ item.tech?.join(", ") }}</div>
-            <UButton v-if="item.itemNum==carouselRef" style="flex: 1; margin-top: 10px;" class="projectItemText" variant="solid" color="cyan" @click="toProjects(item.itemNum)">See More</UButton>
+            <UButton v-if="item.itemNum==carouselRef" style="flex: 1; margin-top: 10px;" class="seeMoreButton" variant="solid" color="cyan" @click="toProjects(item.itemNum)">See More</UButton>
           </div>
         </div>
       </div>

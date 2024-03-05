@@ -50,10 +50,6 @@ const items = [{
   {
     itemNum: 5,
     name: "Project 6",
-  },
-  {
-    itemNum: 100,
-    name: "KEEP THIS AT END, for modal"
   }
 ]
 

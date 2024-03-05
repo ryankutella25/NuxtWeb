@@ -9,6 +9,7 @@
 
 .mobileTitle{
     width: auto;
+    color: #ddd;
 }
 
 .slideInPage{
@@ -17,6 +18,7 @@
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
+    color: #ddd;
 }
 
 .mobileTabs{
@@ -46,5 +48,13 @@
     margin-block: 10px;
     align-items: center;
     justify-content: left;
+    padding-left: 0px;
+    font-size: 16px;
 }
 
+.resumeButton{
+    width: min-content;
+    margin-block: 10px;
+    align-items: center;
+    justify-content: left;
+}

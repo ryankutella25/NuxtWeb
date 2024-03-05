@@ -11,7 +11,7 @@
     <div class="mobileHeaderContainer">
         <UButton class="burger" @click="isOpen = true" color="cyan" :padded="false" variant="ghost" ><Icon name="mingcute:menu-line"  color="#ddd" size="24px"/></UButton>
 
-        <div class="rightHeader">Ryan Kutella</div>
+        <div style="color: #ddd">Ryan Kutella</div>
     </div>
     
 
@@ -24,10 +24,10 @@
         </div>
 
         <div class="mobileSocials">
-          <UButton class="socialButton" @click="isOpen = false" :padded="false" variant="ghost" color="white" to="https://www.linkedin.com/in/ryankutella/" target="_blank"><Icon name="uil:linkedin" color="#ddd" size="24px"/>LinkedIn</UButton>
-          <UButton class="socialButton" @click="isOpen = false" :padded="false" variant="ghost" color="white" to="mailto:ryankutella25@yahoo.com" target="_blank"><Icon name="ic:baseline-mail-outline" color="#ddd" size="24px"/>Email</UButton>
-          <UButton class="socialButton" @click="isOpen = false" :padded="false" variant="ghost" color="white" to="https://github.com/ryankutella25" target="_blank"><Icon name="uil:github" color="#ddd" size="24px"/>GitHub</UButton>
-          <UButton class="socialButton" @click="isOpen = false" color="cyan" variant="outline" to="/RyanKutellaResume.pdf" target="_blank">Resume</UButton>
+          <UButton class="socialButton" @click="isOpen = false" :padded="true" variant="ghost" to="https://www.linkedin.com/in/ryankutella/" target="_blank"><Icon name="uil:linkedin" color="#ddd" size="24px"/>LinkedIn</UButton>
+          <UButton class="socialButton" @click="isOpen = false" :padded="true" variant="ghost" to="mailto:ryankutella25@yahoo.com" target="_blank"><Icon name="ic:baseline-mail-outline" color="#ddd" size="24px"/>Email</UButton>
+          <UButton class="socialButton" @click="isOpen = false" :padded="true" variant="ghost" to="https://github.com/ryankutella25" target="_blank"><Icon name="uil:github" color="#ddd" size="24px"/>GitHub</UButton>
+          <UButton class="resumeButton" @click="isOpen = false" color="cyan" variant="outline" to="/RyanKutellaResume.pdf" target="_blank">Resume</UButton>
         </div>
     </USlideover>
   </div>
