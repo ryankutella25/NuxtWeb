@@ -15,6 +15,7 @@ export default defineAppConfig({
           }
       },
       modal:{
+        container: 'flex min-h-full items-center sm:items-center justify-center text-center',
         overlay:{
           background:'bg-neutral-800/75 dark:bg-neutral-800/75'
         },
