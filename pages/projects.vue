@@ -4,7 +4,7 @@ import projects from "~/components/projects.js";
 
 //languages selected holds value from languages, used in sorting
 const languagesSelected = ref([]);
-const languages = ["Java", "Python"];
+const languages = ["Java", "C++", "C#", "JavaScript"];
 
 //modal stuff below
 const modalActive = useModalActive();
