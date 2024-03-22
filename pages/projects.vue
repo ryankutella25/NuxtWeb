@@ -23,8 +23,8 @@ const sortedProjects = computed(() => {
       if (item.tech == null) return false;
       for (let i = 0; i < item.tech.length && !techTrue; i++) {
         for (let j = 0; j < languagesSelected.value.length; j++) {
-          console.log(item.tech[0] + " and " + languagesSelected.value[j]);
-          if (item.tech[0] == languagesSelected.value[j]) {
+          console.log(item.tech[i] + " and " + languagesSelected.value[j]);
+          if (item.tech[i] == languagesSelected.value[j]) {
             techTrue = true;
             break;
           }
