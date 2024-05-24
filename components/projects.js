@@ -40,10 +40,11 @@ const items = [{
   {
     itemNum: 3,
     name: "CS300 Project 1",
-    tech: ['C++'],
+    tech: ['C'],
     type: 'School',
-    quickDesc: 'This project creating Unix terminal using kernel commands.',
-    longDesc: `This project creating Unix terminal using kernel commands.`,
+    quickDesc: 'This project was creating a Unix terminal using kernel commands.',
+    longDesc: `This project was creating a Unix terminal using kernel commands. It was a good
+    project to get used to using kernel commands and threads.`,
     goTo: '',
     video: '',
     git: 'https://github.com/ryankutella25/CS300_Projects/tree/main/Project1',
@@ -51,10 +52,11 @@ const items = [{
   {
     itemNum: 4,
     name: "CS300 Project 2",
-    tech: ['C++'],
+    tech: ['C'],
     type: 'School',
-    quickDesc: 'This project managing virtual pages and physical blocks using page tables.',
-    longDesc: `This project managing virtual pages and physical blocks using page tables and also implements a least recently used cache to decrease page faults.`,
+    quickDesc: 'This project manages virtual pages and physical blocks using page tables.',
+    longDesc: `This project manages virtual pages and physical blocks using page tables and also implements a least recently used cache to 
+    decrease page faults.`,
     goTo: '',
     video: '',
     git: 'https://github.com/ryankutella25/CS300_Projects/tree/main/Project2',
@@ -62,7 +64,7 @@ const items = [{
   {
     itemNum: 5,
     name: "CS300 Project 3",
-    tech: ['C++'],
+    tech: ['C'],
     type: 'School',
     quickDesc: 'This project uses mutex locks to prevent deadlock and race conditions caused by 2 threads accessing the same variable.',
     longDesc: `This project uses mutex locks to prevent deadlock and race conditions caused by 2 threads accessing the same variable.`,
@@ -73,7 +75,7 @@ const items = [{
   {
     itemNum: 6,
     name: "CS300 Project 4",
-    tech: ['C++'],
+    tech: ['C'],
     type: 'School',
     quickDesc: 'This project has to use sleep and mutex locks to balance waiting time for a teachers office hours. ',
     longDesc: `This project has to use sleep and mutex locks to balance waiting time for a teachers office hours. One part
