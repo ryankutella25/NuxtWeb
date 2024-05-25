@@ -10,8 +10,8 @@
                 <div class="about1_1">I am <span style="font-weight: bold; color: cyan;">Ryan Kutella</span> from Elk Grove Village, IL. 
                     I am currently working towards my Computer Science Degree at The University of Alabama. 
                     I am passionate about software development and like turning creative ideas into a reality. 
-                    I am an incoming Senior and have been coding programs for over 7 years, starting Freshman Year of 
-                    High School adding skills and different programming languages into my arsenal as I go. 
+                    I am an incoming senior and have been coding programs for over 7 years, starting freshman year of 
+                    high school. I have been adding different skills and programming languages into my arsenal as I go. 
                     I've played a large role in the web development of a multi-million dollar company and have multiple other projects displaying my skills.
                 </div>
                 <div class="about1_2">
