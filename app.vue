@@ -67,10 +67,9 @@
         carousel.style.left = negative+offset+"px";
       }
     }
-
 </script>
 
-<template lang="en">
+<template>
   <div class="fullWidth">
 
     <MobileHeader class="mobileHeader"/>
@@ -79,14 +78,3 @@
 
   </div>
 </template>
-
-<script setup>
-
-  useHead({
-    link: [{ rel: 'icon', type: 'image/png', href: 'favicon.ico' }],
-    htmlAttrs: {
-      lang: 'en',
-    },
-  })
-
-</script>
