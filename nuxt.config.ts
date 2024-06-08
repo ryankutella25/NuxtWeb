@@ -7,7 +7,6 @@ export default defineNuxtConfig({
       title: 'Ryan Kutella\'s Portfolio',
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon-32x32.png" }],
       htmlAttrs: {
         lang: 'en',
       },

@@ -79,3 +79,14 @@
 
   </div>
 </template>
+
+<script setup>
+
+  useHead({
+    link: [{ rel: 'icon', type: 'image/png', href: 'favicon.ico' }],
+    htmlAttrs: {
+      lang: 'en',
+    },
+  })
+
+</script>
