@@ -70,7 +70,7 @@
 
 </script>
 
-<template>
+<template lang="en">
   <div class="fullWidth">
 
     <MobileHeader class="mobileHeader"/>
