@@ -9,13 +9,11 @@
 <template>
   <div >
     <div class="mobileHeaderContainer">
-        <UButton class="burger" aria-label="Open Sidebar" @click="isOpen = true" color="cyan" :padded="false" variant="ghost" ><Icon name="mingcute:menu-line"  color="#ddd" size="24px"/></UButton>
+        <UButton class="burger" aria-label="Open Sidebar" @click="isOpen = true" color="cyan" :padded="false" variant="ghost" ><Icon aria-label="Open Sidebar" name="mingcute:menu-line"  color="#ddd" size="24px"/></UButton>
 
         <div style="color: #ddd">Ryan Kutella</div>
     </div>
     
-
-
     <USlideover class="slideInPage" side="left" v-model="isOpen">
         <div class="mobileTabs">
             <NuxtLink class="mobileTabText" aria-label="Go To Home Page" @click="isOpen = false" to="/">Home</NuxtLink>

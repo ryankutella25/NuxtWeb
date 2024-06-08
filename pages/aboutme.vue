@@ -15,13 +15,13 @@
                     I've played a large role in the web development of a multi-million dollar company and have multiple other projects displaying my skills.
                 </div>
                 <div class="about1_2">
-                  <img class="aboutImage" src="/sticker.webp"/>
+                  <img class="aboutImage" alt="Bitmoji of Me" src="/sticker.webp"/>
                 </div>
                 
             </div>
             <div class="about2">
                <div class="about2_1">
-                  <img class="skillsImage" src="/skills.webp"/>
+                  <img class="skillsImage" alt="Lightbulb" src="/skills.webp"/>
                 </div>
                 <div class="about2_2">
                   <p><span style="font-weight: bold; color: cyan;" >Technical Skills</span></p>
