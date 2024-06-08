@@ -127,7 +127,7 @@ const toProjects = (itemNum: Number) => {
       </div>
     </div>
     <div class="projectDiv">
-      <NuxtLink class="projectText" to="/projects">Projects</NuxtLink>
+      <NuxtLink class="projectText" to="/projects" aria-label="Go To Projects" >Projects</NuxtLink>
       <div id="carouselHolder" class="carouselHolder">
         <div id="carousel" class="projectCarousel">
           <div
@@ -137,17 +137,17 @@ const toProjects = (itemNum: Number) => {
             <div style="flex: 1; font-size: 18px;" class="projectItemText">{{ item.name }}</div>
             <div v-if="item.itemNum==carouselRef" style="flex: 4" class="projectItemText">{{ item.quickDesc }}</div>
             <div style="flex: 2;" class="projectItemText">{{ item.tech?.join(", ") }}</div>
-            <UButton v-if="item.itemNum==carouselRef" style="flex: 1; margin-top: 10px;" class="seeMoreButton" variant="solid" color="cyan" @click="toProjects(item.itemNum)">See More</UButton>
+            <UButton aria-label="Go To Project" v-if="item.itemNum==carouselRef" style="flex: 1; margin-top: 10px;" class="seeMoreButton" variant="solid" color="cyan" @click="toProjects(item.itemNum)">See More</UButton>
           </div>
         </div>
       </div>
       <div class="carouselButtons">
-        <UButton variant="outline" color="cyan" @click="onPrev()">Prev</UButton>
-        <UButton color="cyan" @click="isPaused = !isPaused">
+        <UButton aria-label="Previous Slide" variant="outline" color="cyan" @click="onPrev()">Prev</UButton>
+        <UButton aria-label="Play/Pause" color="cyan" @click="isPaused = !isPaused">
           <Icon v-if="isPaused" name="ph:play-bold"  color="#121212" size="24px"/>
           <Icon v-if="!isPaused" name="ph:pause-bold"  color="#121212" size="24px"/>
         </UButton>
-        <UButton variant="outline" color="cyan" @click="onNext()">Next</UButton>
+        <UButton aria-label="Next Slide" variant="outline" color="cyan" @click="onNext()">Next</UButton>
       </div>
     </div>
   </div>
