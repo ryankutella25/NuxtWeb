@@ -3,6 +3,13 @@ import "~/assets/css/main.css";
 
 import projects from "~/components/projects.js";
 
+useHead({
+  title: 'Ryan Kutella\'s Portfolio',
+  meta: [
+    { name: 'description', content: 'Welcome to Ryan Kutella\'s portfolio!' }
+  ]
+});
+
 const carouselRef = useCarousel(); //which carousel item is active
 const isPaused = usePaused(); //true when carousel is paused
 const oneStop = useStop(); //true one cycle after pressing next/prev

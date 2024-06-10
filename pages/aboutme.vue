@@ -1,6 +1,11 @@
-<script setup lang="ts">
+<script? setup lang="ts">
     import '~/assets/css/aboutme.css';
-
+    useHead({
+      title: 'Ryan Kutella\'s Projects',
+      meta: [
+        { name: 'description', content: 'Full portfolio of my projects throughout the years.' }
+      ]
+    });
 </script>
 
 <template>

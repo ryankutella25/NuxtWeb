@@ -2,6 +2,13 @@
 import "~/assets/css/projects.css";
 import projects from "~/components/projects.js";
 
+useHead({
+  title: 'Ryan Kutella\'s Portfolio',
+  meta: [
+    { name: 'description', content: 'Learn more about me, Ryan Kutella' }
+  ]
+});
+
 //languages selected holds value from languages, used in sorting
 const languagesSelected = ref([]);
 const languages = ["Java", "C++", "C#", "JavaScript", "NoSQL", "SQL", "Vue", "Nuxt", "CSS", "Expo", "React Native", "Unity", "AI", "Firebase"];
