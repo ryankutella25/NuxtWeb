@@ -100,6 +100,8 @@ useHead({
             <NuxtImg
               src="/Headshot.webp"
               alt="Ryan headshot"
+              width="495"
+              height="640"
               sizes="100vw sm:420px"
               class="h-full w-full scale-[1.3] object-cover object-[center_30%]"
             />

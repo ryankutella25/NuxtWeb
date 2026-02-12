@@ -6,9 +6,6 @@ export default defineNuxtConfig({
   css: ['~/tailwind.css'],
   nitro: {
     compressPublicAssets: true,
-    prerender: {
-      routes: ["/", "/aboutme", "/projects"],
-    },
   },
   routeRules: {
     "/": { prerender: true },
