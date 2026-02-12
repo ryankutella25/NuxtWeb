@@ -57,18 +57,18 @@ const toProjects = (itemNum: Project["itemNum"]) => {
 <template>
   <main class="relative overflow-hidden pb-12">
     <div class="pointer-events-none absolute inset-0 -z-10">
-      <div class="absolute -left-36 top-16 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
-      <div class="absolute right-0 top-72 h-80 w-80 rounded-full bg-teal-400/10 blur-3xl" />
-      <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+      <div class="absolute -left-36 top-16 hidden h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl sm:block" />
+      <div class="absolute right-0 top-72 hidden h-80 w-80 rounded-full bg-teal-400/10 blur-3xl sm:block" />
+      <div class="absolute bottom-0 left-1/3 hidden h-72 w-72 rounded-full bg-blue-500/10 blur-3xl sm:block" />
     </div>
 
-    <section class="relative mx-auto mt-4 grid items-start w-[94%] max-w-6xl gap-5 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-4 shadow-2xl shadow-black/30 backdrop-blur sm:mt-6 sm:gap-6 sm:p-6 md:gap-8 md:p-10">
+    <section class="relative mx-auto mt-4 grid items-start w-[94%] max-w-6xl gap-5 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-4 shadow-lg shadow-black/20 sm:mt-6 sm:gap-6 sm:p-6 sm:shadow-2xl sm:shadow-black/30 sm:backdrop-blur md:gap-8 md:p-10">
       <div class="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
         <NuxtImg
           src="/CitySkylineDesktop.webp"
           alt=""
           aria-hidden="true"
-          sizes="100vw md:1200px"
+          sizes="(max-width: 1024px) 90vw, 1200px"
           class="h-full w-full object-cover opacity-90"
         />
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/25" />
@@ -78,10 +78,13 @@ const toProjects = (itemNum: Project["itemNum"]) => {
         <div class="mb-3 overflow-hidden rounded-xl border border-white/10 lg:hidden">
           <NuxtImg
             src="/CitySkylineMobile.webp"
-          alt=""
-          aria-hidden="true"
-          sizes="100vw md:1200px"
-          class="h-full w-full object-cover opacity-90"
+            alt=""
+            aria-hidden="true"
+            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 86vw, 1200px"
+            preload
+            loading="eager"
+            fetchpriority="high"
+            class="h-full w-full object-cover opacity-90"
           />
         </div>
         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Software Developer</p>
@@ -102,7 +105,7 @@ const toProjects = (itemNum: Project["itemNum"]) => {
       </div>
     </section>
 
-    <SectionCard class="mt-6 rounded-3xl sm:mt-8">
+    <SectionCard class="mt-6 rounded-3xl sm:mt-8 [content-visibility:auto] [contain-intrinsic-size:1px_800px]">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 class="text-xl font-semibold text-slate-100 sm:text-2xl">Featured Projects</h2>
