@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const isOpen = ref(false);
 const route = useRoute();
-A
 const closeMenu = () => {
   isOpen.value = false;
 };
