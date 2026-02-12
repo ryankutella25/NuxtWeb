@@ -11,22 +11,7 @@ useHead({
       content:
         "Portfolio of Ryan Kutella, a software developer focused on solving real-world problems with clean, fast products.",
     },
-  ],
-  link: [
-    {
-      rel: "preload",
-      as: "image",
-      href: "/CitySkylineMobile.webp",
-      media: "(max-width: 1023px)",
-      fetchpriority: "high",
-    },
-    {
-      rel: "preload",
-      as: "image",
-      href: "/CitySkylineDesktop.webp",
-      media: "(min-width: 1024px)",
-    },
-  ],
+  ]
 });
 
 
