@@ -35,16 +35,33 @@ const mobileNavLinkClass = (path: string) =>
       </button>
     </div>
 
-    <Transition name="mobile-menu">
-      <div v-if="isOpen" class="fixed inset-0 z-50 md:hidden">
+    <Transition
+      enter-active-class="transition-opacity duration-300 ease-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-300 linear"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div v-show="isOpen" class="fixed inset-0 z-50 md:hidden will-change-opacity">
         <button
           type="button"
           aria-label="Close menu"
           class="absolute inset-0 bg-black/70"
           @click="closeMenu"
         />
+      </div>
+    </Transition>
 
-        <aside class="mobile-menu-panel relative ml-auto flex h-full w-[84vw] max-w-80 flex-col overflow-y-auto border-l border-white/10 bg-slate-950 p-5">
+    <Transition
+      enter-active-class="transform-gpu transition-transform duration-300 ease-out"
+      enter-from-class="translate-x-full"
+      enter-to-class="translate-x-0"
+      leave-active-class="transform-gpu transition-transform duration-300 linear"
+      leave-from-class="translate-x-0"
+      leave-to-class="translate-x-full"
+    >
+      <aside v-show="isOpen" class="mobile-menu-panel fixed inset-y-0 right-0 z-[60] flex h-full w-[84vw] max-w-80 flex-col overflow-y-auto border-l border-white/10 bg-slate-950 p-5 will-change-transform">
         <div class="mb-6 flex items-center justify-between">
           <p class="text-xs font-semibold tracking-[0.16em] text-slate-300">NAVIGATION</p>
           <button
@@ -87,30 +104,7 @@ const mobileNavLinkClass = (path: string) =>
             @click="openExternal('/RyanKutella.pdf')"
           >Resume</button>
         </div>
-        </aside>
-      </div>
+      </aside>
     </Transition>
   </div>
 </template>
-
-<style scoped>
-.mobile-menu-enter-active,
-.mobile-menu-leave-active {
-  transition: opacity 220ms ease;
-}
-
-.mobile-menu-enter-from,
-.mobile-menu-leave-to {
-  opacity: 0;
-}
-
-.mobile-menu-enter-active .mobile-menu-panel,
-.mobile-menu-leave-active .mobile-menu-panel {
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.mobile-menu-enter-from .mobile-menu-panel,
-.mobile-menu-leave-to .mobile-menu-panel {
-  transform: translateX(20px);
-}
-</style>
