@@ -12,6 +12,21 @@ useHead({
         "Portfolio of Ryan Kutella, a software developer focused on solving real-world problems with clean, fast products.",
     },
   ],
+  link: [
+    {
+      rel: "preload",
+      as: "image",
+      href: "/CitySkylineMobile.webp",
+      media: "(max-width: 1023px)",
+      fetchpriority: "high",
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: "/CitySkylineDesktop.webp",
+      media: "(min-width: 1024px)",
+    },
+  ],
 });
 
 
@@ -66,32 +81,32 @@ const toProjects = (itemNum: Project["itemNum"]) => {
 
     <section class="relative mx-auto mt-4 grid items-start w-[94%] max-w-6xl gap-5 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-4 shadow-lg shadow-black/20 sm:mt-6 sm:gap-6 sm:p-6 sm:shadow-2xl sm:shadow-black/30 sm:backdrop-blur md:gap-8 md:p-10">
       <div class="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
-        <NuxtImg
+        <img
           src="/CitySkylineDesktop.webp"
           alt=""
           aria-hidden="true"
-          sizes="100vw lg:1200px"
           width="1200"
           height="675"
+          loading="eager"
+          decoding="async"
           class="h-full w-full object-cover opacity-90"
-        />
+        >
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/25" />
       </div>
 
       <div>
         <div class="mb-3 overflow-hidden rounded-xl border border-white/10 lg:hidden">
-          <NuxtImg
+          <img
             src="/CitySkylineMobile.webp"
             alt=""
             aria-hidden="true"
-            sizes="100vw sm:92vw md:86vw"
-            preload
-            loading="eager"
-            fetchpriority="high"
             width="1200"
             height="675"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
             class="h-full w-full object-cover opacity-90"
-          />
+          >
         </div>
         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Software Developer</p>
         <h1 class="mt-2 max-w-[26ch] text-xl font-semibold leading-tight text-slate-50 sm:mt-3 sm:max-w-[26ch] sm:text-4xl md:text-5xl">I love solving complex problems through critical thinking and software engineering.</h1>
