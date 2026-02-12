@@ -4,6 +4,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-02-11',
   modules: ['@nuxt/image'],
   css: ['~/tailwind.css'],
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      routes: ["/", "/aboutme", "/projects"],
+    },
+  },
   routeRules: {
     "/": { prerender: true },
     "/aboutme": { prerender: true },

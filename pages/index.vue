@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import projects from "~/data/projects";
 import type { Project } from "~/data/projects";
+import { defineAsyncComponent } from "vue";
 
 useHead({
   title: "Ryan Kutella's Portfolio",
@@ -16,11 +17,12 @@ useHead({
 
 const currentProject = ref<Project>(projects[0]);
 const modalActive = ref(false);
+const AsyncProjectModal = defineAsyncComponent(() => import("~/components/ProjectModal.vue"));
 
-const featuredProjects = computed(() => {
+const featuredProjects = (() => {
   const configuredFeatured = projects.filter((item) => item.featured);
   if (configuredFeatured.length >= 3) {
-    return configuredFeatured.slice(0, 3);
+    return configuredFeatured.slice(0, 3) as Project[];
   }
 
   return projects
@@ -30,8 +32,8 @@ const featuredProjects = computed(() => {
       const bHasLinks = b.links.live || b.links.code || b.links.video ? 1 : 0;
       return bHasLinks - aHasLinks;
     })
-    .slice(0, 3);
-});
+    .slice(0, 3) as Project[];
+})();
 
 const credibilityPoints = [
   "Software Developer Co-op @ Mercedes Benz U.S.",
@@ -103,32 +105,19 @@ const toProjects = (itemNum: Project["itemNum"]) => {
       </div>
 
       <div>
-        <div class="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3">
+        <div v-once class="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3">
           <StatChip v-for="point in credibilityPoints" :key="point" :text="point" />
         </div>
       </div>
     </section>
 
-    <SectionCard class="mt-6 rounded-3xl sm:mt-8 [content-visibility:auto] [contain-intrinsic-size:1px_800px]">
-      <div class="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h2 class="text-xl font-semibold text-slate-100 sm:text-2xl">Featured Projects</h2>
-        </div>
-        <BaseButton to="/projects" size="sm">All Projects</BaseButton>
-      </div>
+    <LazyHomeFeaturedProjects
+      class="mt-6 rounded-3xl sm:mt-8 [content-visibility:auto] [contain-intrinsic-size:1px_800px]"
+      :featured-projects="featuredProjects"
+      @open="toProjects"
+    />
 
-      <div class="mt-5 grid gap-4 md:grid-cols-3">
-        <ProjectCard
-          v-for="item in featuredProjects"
-          :key="item.itemNum"
-          :project="item"
-          compact
-          @open="toProjects"
-        />
-      </div>
-    </SectionCard>
-
-    <ProjectModal v-model="modalActive" :project="currentProject" />
+    <AsyncProjectModal v-if="modalActive" v-model="modalActive" :project="currentProject" />
 
   </main>
 </template>
