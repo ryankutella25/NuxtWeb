@@ -98,7 +98,7 @@ useHead({
         <div class="w-full max-w-sm rounded-2xl border border-white/10 bg-slate-900/70 p-4">
           <div class="h-80 w-full overflow-hidden rounded-xl">
             <NuxtImg
-              src="/Headshot.png"
+              src="/Headshot.webp"
               alt="Ryan headshot"
               sizes="100vw sm:420px"
               class="h-full w-full scale-[1.3] object-cover object-[center_30%]"
