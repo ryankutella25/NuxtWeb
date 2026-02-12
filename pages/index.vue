@@ -66,7 +66,7 @@ const toProjects = (itemNum: Project["itemNum"]) => {
 
     <section class="relative mx-auto mt-4 grid items-start w-[94%] max-w-6xl gap-5 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-4 shadow-lg shadow-black/20 sm:mt-6 sm:gap-6 sm:p-6 sm:shadow-2xl sm:shadow-black/30 sm:backdrop-blur md:gap-8 md:p-10">
       <div class="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
-        <img
+        <NuxtImg
           src="/CitySkylineDesktop.webp"
           alt=""
           aria-hidden="true"
@@ -75,13 +75,13 @@ const toProjects = (itemNum: Project["itemNum"]) => {
           loading="eager"
           decoding="async"
           class="h-full w-full object-cover opacity-90"
-        >
+        />
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/25" />
       </div>
 
       <div>
         <div class="mb-3 overflow-hidden rounded-xl border border-white/10 lg:hidden">
-          <img
+          <NuxtImg
             src="/CitySkylineMobile.webp"
             alt=""
             aria-hidden="true"
@@ -91,7 +91,7 @@ const toProjects = (itemNum: Project["itemNum"]) => {
             fetchpriority="high"
             decoding="async"
             class="h-full w-full object-cover opacity-90"
-          >
+          />
         </div>
         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Software Developer</p>
         <h1 class="mt-2 max-w-[26ch] text-xl font-semibold leading-tight text-slate-50 sm:mt-3 sm:max-w-[26ch] sm:text-4xl md:text-5xl">I love solving complex problems through critical thinking and software engineering.</h1>
