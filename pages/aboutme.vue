@@ -32,6 +32,7 @@ useHead({
           I have been building software for over 7 years and have worked across web products, mobile experiences, and systems-level coursework.
           My priority is always the same: ship clean, useful solutions that are easy to maintain.
         </p>
+        
         <div class="mt-5 grid grid-cols-4 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
           <BaseButton
             href="https://github.com/ryankutella25"
