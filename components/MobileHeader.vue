@@ -24,7 +24,7 @@ const mobileNavLinkClass = (path: string) =>
 <template>
   <div class="sticky top-0 z-50 md:hidden">
     <div class="flex h-14 items-center justify-between border-b border-white/10 bg-slate-950/90 px-4 backdrop-blur">
-      <NuxtLink to="/" class="rounded-md px-2 py-1 text-xs font-semibold tracking-[0.16em] text-slate-100">RYAN KUTELLA</NuxtLink>
+      <p class="rounded-md px-2 py-1 text-xs font-semibold tracking-[0.16em] text-slate-100">RYAN KUTELLA</p>
       <button
         type="button"
         aria-label="Open menu"

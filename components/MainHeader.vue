@@ -10,12 +10,11 @@ const navLinkClass = (path: string) =>
 <template>
   <header class="sticky top-0 z-40 border-b border-white/10 bg-slate-950/85 backdrop-blur">
     <div class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-      <NuxtLink
-        to="/"
-        class="rounded-md px-2 py-1 text-sm font-semibold tracking-[0.18em] text-slate-100 transition hover:bg-white/10 hover:text-cyan-300"
+      <p
+        class="rounded-md px-2 py-1 text-sm font-semibold tracking-[0.18em] text-slate-100"
       >
         RYAN KUTELLA
-      </NuxtLink>
+      </p>
 
       <nav class="hidden items-center gap-1 md:flex">
         <NuxtLink to="/" :class="['border-b-2 px-3 py-2 text-sm font-medium transition', navLinkClass('/')]">Home</NuxtLink>
