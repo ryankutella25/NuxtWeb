@@ -22,15 +22,16 @@ const mobileNavLinkClass = (path: string) =>
       </button>
     </div>
 
-    <div v-if="isOpen" class="fixed inset-0 z-50 md:hidden">
-      <button
-        type="button"
-        aria-label="Close menu"
-        class="absolute inset-0 bg-black/70"
-        @click="isOpen = false"
-      />
+    <Transition name="mobile-menu">
+      <div v-if="isOpen" class="fixed inset-0 z-50 md:hidden">
+        <button
+          type="button"
+          aria-label="Close menu"
+          class="absolute inset-0 bg-black/70"
+          @click="isOpen = false"
+        />
 
-      <aside class="relative ml-auto flex h-full w-[84vw] max-w-80 flex-col overflow-y-auto border-l border-white/10 bg-slate-950 p-5">
+        <aside class="mobile-menu-panel relative ml-auto flex h-full w-[84vw] max-w-80 flex-col overflow-y-auto border-l border-white/10 bg-slate-950 p-5">
         <div class="mb-6 flex items-center justify-between">
           <p class="text-xs font-semibold tracking-[0.16em] text-slate-300">NAVIGATION</p>
           <button
@@ -74,7 +75,30 @@ const mobileNavLinkClass = (path: string) =>
             class="mx-1 inline-flex w-[calc(100%-1rem)] items-center justify-start rounded-md border border-cyan-300/80 bg-cyan-300/10 px-3 py-2 text-base font-medium text-cyan-200"
           >Resume</a>
         </div>
-      </aside>
-    </div>
+        </aside>
+      </div>
+    </Transition>
   </div>
 </template>
+
+<style scoped>
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: opacity 220ms ease;
+}
+
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  opacity: 0;
+}
+
+.mobile-menu-enter-active .mobile-menu-panel,
+.mobile-menu-leave-active .mobile-menu-panel {
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-menu-enter-from .mobile-menu-panel,
+.mobile-menu-leave-to .mobile-menu-panel {
+  transform: translateX(20px);
+}
+</style>

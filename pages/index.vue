@@ -85,7 +85,7 @@ const toProjects = (itemNum: Project["itemNum"]) => {
           />
         </div>
         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Software Developer</p>
-        <h1 class="mt-2 max-w-[22ch] text-xl font-semibold leading-tight text-slate-50 sm:mt-3 sm:max-w-[18ch] sm:text-4xl md:text-5xl">I love solving complex problems through critical thinking and software engineering.</h1>
+        <h1 class="mt-2 max-w-[26ch] text-xl font-semibold leading-tight text-slate-50 sm:mt-3 sm:max-w-[26ch] sm:text-4xl md:text-5xl">I love solving complex problems through critical thinking and software engineering.</h1>
 
 
         <div class="mt-5 flex flex-wrap items-center gap-3 sm:mt-7">
