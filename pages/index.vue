@@ -34,12 +34,12 @@ const featuredProjects = computed(() => {
 });
 
 const credibilityPoints = [
-  "7+ years building software",
+  "Software Developer Co-op @ Mercedes Benz U.S.",
   "Computer Science @ University of Alabama",
-  "Production experience in ecommerce and internal systems",
-  "End-to-end development across frontend and backend",
-  "Focused on performance, maintainability, and user impact",
-  "Built and shipped projects from concept to deployment",
+  "IT Intern @ Abbott Rubber Company",
+  "7+ years building software",
+  "Experience building full-stack production applications",
+  "Strong collaboration, ownership, and communication skills",
 ];
 
 const toProjects = (itemNum: Project["itemNum"]) => {
@@ -86,9 +86,7 @@ const toProjects = (itemNum: Project["itemNum"]) => {
         </div>
         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Software Developer</p>
         <h1 class="mt-2 max-w-[22ch] text-xl font-semibold leading-tight text-slate-50 sm:mt-3 sm:max-w-[18ch] sm:text-4xl md:text-5xl">I love solving complex problems through critical thinking and software engineering.</h1>
-        <p class="mt-3 max-w-[60ch] text-sm leading-relaxed text-slate-300 sm:text-base">
-          I build clean, reliable software across frontend and backend with a focus on performance and real-world impact.
-        </p>
+
 
         <div class="mt-5 flex flex-wrap items-center gap-3 sm:mt-7">
           <BaseButton to="/projects" variant="primary" :full="true">Explore Projects</BaseButton>
@@ -108,7 +106,6 @@ const toProjects = (itemNum: Project["itemNum"]) => {
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 class="text-xl font-semibold text-slate-100 sm:text-2xl">Featured Projects</h2>
-          <p class="mt-1 text-sm text-slate-300">Fast snapshot of impact, stack, and implementation quality.</p>
         </div>
         <BaseButton to="/projects" size="sm">All Projects</BaseButton>
       </div>
