@@ -1,161 +1,138 @@
 <script setup lang="ts">
-import "~/assets/css/main.css";
-
-import projects from "~/components/projects.js";
+import projects from "~/data/projects";
+import type { Project } from "~/data/projects";
+import { defineAsyncComponent } from "vue";
 
 useHead({
-  title: 'Ryan Kutella\'s Portfolio',
+  title: "Ryan Kutella's Portfolio",
   meta: [
-    { name: 'description', content: 'Welcome to Ryan Kutella\'s portfolio!' }
-  ]
+    {
+      name: "description",
+      content:
+        "Portfolio of Ryan Kutella, a software developer focused on solving real-world problems with clean, fast products.",
+    },
+  ],
+  link: [
+    {
+      rel: "preload",
+      as: "image",
+      href: "/CitySkylineMobile.webp",
+      media: "(max-width: 1023px)",
+      fetchpriority: "high",
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: "/CitySkylineDesktop.webp",
+      media: "(min-width: 1024px)",
+    },
+  ],
 });
 
-const carouselRef = useCarousel(); //which carousel item is active
-const isPaused = usePaused(); //true when carousel is paused
-const oneStop = useStop(); //true one cycle after pressing next/prev
 
-const currentProject = useProjectOpen();//just used when clicking see more on project carousel
-const modalActive = useModalActive();//just used when clicking see more on project carousel
+const currentProject = ref<Project>(projects[0]);
+const modalActive = ref(false);
+const AsyncProjectModal = defineAsyncComponent(() => import("~/components/ProjectModal.vue"));
 
-onMounted(() => {
-  shiftCarousel(),
-  //fixes carousel after resizing window
-  window.addEventListener("resize", () => {
-    shiftCarousel();
-  }),
-  //fixes carousel when going fullscreen
-  window.addEventListener("fullscreenchange", function () {
-    shiftCarousel();
-  });
-});
+const featuredProjects = (() => {
+  const configuredFeatured = projects.filter((item) => item.featured);
+  if (configuredFeatured.length >= 3) {
+    return configuredFeatured.slice(0, 3) as Project[];
+  }
 
-//goes to item to left in carousel
-function onPrev() {
-  oneStop.value = true;
-  carouselRef.value = (carouselRef.value - 1 + projects.length) % projects.length;
-  shiftCarousel();
-}
+  return projects
+    .filter((item) => item.itemNum !== 0)
+    .sort((a, b) => {
+      const aHasLinks = a.links.live || a.links.code || a.links.video ? 1 : 0;
+      const bHasLinks = b.links.live || b.links.code || b.links.video ? 1 : 0;
+      return bHasLinks - aHasLinks;
+    })
+    .slice(0, 3) as Project[];
+})();
 
-//goes to item to right in carousel
-function onNext() {
-  oneStop.value = true;
-  carouselRef.value = (carouselRef.value + 1 + projects.length) % projects.length;
-  shiftCarousel();
-}
+const credibilityPoints = [
+  "Software Developer Co-op @ Mercedes Benz U.S.",
+  "Computer Science @ University of Alabama",
+  "IT Intern @ Abbott Rubber Company",
+  "7+ years building software",
+  "Experience building full-stack production applications",
+  "Strong collaboration, ownership, and communication skills",
+];
 
-//fixes carousel and lets active item be on screen
-function shiftCarousel() {
-  var carouselHolder = document.getElementById("carouselHolder");
-  if (carouselHolder == null) {
+const toProjects = (itemNum: Project["itemNum"]) => {
+  const selectedProject = projects.find((item) => item.itemNum === itemNum);
+  if (!selectedProject) {
     return;
   }
 
-  var activeItemWidth = 320;
-  var normalItemWidth = 220;
-
-  var width = carouselHolder.clientWidth; //width of carousel
-  // console.log(width);
-  var itemsWidth = (projects.length - 1) * normalItemWidth + activeItemWidth; //width of all items
-  // console.log(itemsWidth);
-
-  if (itemsWidth > width) {
-    //if greater we need to shift
-    var offset;
-    var itemWidthToRight =
-      (projects.length - carouselRef.value - 1) * normalItemWidth +
-      activeItemWidth; //width to right of active item (including active item)
-
-    if (itemWidthToRight > width || width < 800) {
-      //active element on left
-      offset = itemsWidth - itemWidthToRight;
-    } else {
-      //last item on right
-      offset = itemsWidth - width;
-    }
-
-    var negative = "-";
-
-    if (width < 800) {
-      //want object in middle
-      offset = offset - (width - 320) / 2;
-
-      if (offset < 0) {
-        offset = (width - 320) / 2;
-        negative = "";
-      }
-    }
-
-    var carousel = document.getElementById("carousel");
-    if (carousel == null) {
-      console.log("HUH");
-      return;
-    }
-    carousel.style.left = negative + offset + "px";
-  }
-}
-
-//called from see more, passes in itemNum
-const toProjects = (itemNum: Number) => {
-
-  currentProject.value = projects[itemNum.valueOf()];
+  currentProject.value = selectedProject;
   modalActive.value = true;
+};
 
-  return navigateTo({
-    path: '/projects',
-  })
-
-}
 </script>
 
 <template>
-  <div class="mainContainer">
-    <!-- This page correctly has only one single root element -->
-    <div class="cityImg">
-      <div class="infoContainer">
-        <div style="font-size: 21px; text-align: center">
-          WELCOME TO MY WEBSITE,
-        </div>
-        <div style="font-size: 29px; text-align: center">
-          I AM
-          <span
-            style="
-              font-size: 29px;
-              font-weight: bolder;
-              text-align: center;
-              color: cyan;
-            "
-            >
-            RYAN KUTELLA
-          </span>
-        </div>
-        <div style="font-size: 20px; text-align: center; ">
-          CS STUDENT @ U of ALABAMA
-        </div>
-      </div>
+  <main class="relative overflow-hidden pb-12">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute -left-36 top-16 hidden h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl sm:block" />
+      <div class="absolute right-0 top-72 hidden h-80 w-80 rounded-full bg-teal-400/10 blur-3xl sm:block" />
+      <div class="absolute bottom-0 left-1/3 hidden h-72 w-72 rounded-full bg-blue-500/10 blur-3xl sm:block" />
     </div>
-    <div class="projectDiv">
-      <NuxtLink class="projectText" to="/projects" aria-label="Go To Projects" >Projects</NuxtLink>
-      <div id="carouselHolder" class="carouselHolder">
-        <div id="carousel" class="projectCarousel">
-          <div
-            v-for="item in projects"
-            :class="[item.itemNum == carouselRef ? 'projectItemActive' : '','projectItem',]"
+
+    <section class="relative mx-auto mt-4 grid items-start w-[94%] max-w-6xl gap-5 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-4 shadow-lg shadow-black/20 sm:mt-6 sm:gap-6 sm:p-6 sm:shadow-2xl sm:shadow-black/30 sm:backdrop-blur md:gap-8 md:p-10">
+      <div class="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
+        <img
+          src="/CitySkylineDesktop.webp"
+          alt=""
+          aria-hidden="true"
+          width="1200"
+          height="675"
+          loading="eager"
+          decoding="async"
+          class="h-full w-full object-cover opacity-90"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/25" />
+      </div>
+
+      <div>
+        <div class="mb-3 overflow-hidden rounded-xl border border-white/10 lg:hidden">
+          <img
+            src="/CitySkylineMobile.webp"
+            alt=""
+            aria-hidden="true"
+            width="661"
+            height="250"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="h-full w-full object-cover opacity-90"
           >
-            <div style="flex: 1; font-size: 18px;" class="projectItemText">{{ item.name }}</div>
-            <div v-if="item.itemNum==carouselRef" style="flex: 4" class="projectItemText">{{ item.quickDesc }}</div>
-            <div style="flex: 2;" class="projectItemText">{{ item.tech?.join(", ") }}</div>
-            <UButton aria-label="Go To Project" v-if="item.itemNum==carouselRef" style="flex: 1; margin-top: 10px;" class="seeMoreButton" variant="solid" color="cyan" @click="toProjects(item.itemNum)">See More</UButton>
-          </div>
+        </div>
+        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Software Developer</p>
+        <h1 class="mt-2 max-w-[26ch] text-xl font-semibold leading-tight text-slate-50 sm:mt-3 sm:max-w-[26ch] sm:text-4xl md:text-5xl">I love solving complex problems through critical thinking and software engineering.</h1>
+
+
+        <div class="mt-5 flex flex-wrap items-center gap-3 sm:mt-7">
+          <BaseButton to="/projects" variant="primary" :full="true">Explore Projects</BaseButton>
+          <BaseButton to="/aboutme" variant="glass" :full="true">Learn More About Me</BaseButton>
+        </div>
+
+      </div>
+
+      <div>
+        <div v-once class="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3">
+          <StatChip v-for="point in credibilityPoints" :key="point" :text="point" />
         </div>
       </div>
-      <div class="carouselButtons">
-        <UButton aria-label="Previous Slide" variant="outline" color="cyan" @click="onPrev()">Prev</UButton>
-        <UButton aria-label="Play/Pause" color="cyan" @click="isPaused = !isPaused">
-          <Icon v-if="isPaused" name="ph:play-bold"  color="#121212" size="24px"/>
-          <Icon v-if="!isPaused" name="ph:pause-bold"  color="#121212" size="24px"/>
-        </UButton>
-        <UButton aria-label="Next Slide" variant="outline" color="cyan" @click="onNext()">Next</UButton>
-      </div>
-    </div>
-  </div>
+    </section>
+
+    <LazyHomeFeaturedProjects
+      class="mt-6 rounded-3xl sm:mt-8 [content-visibility:auto] [contain-intrinsic-size:1px_800px]"
+      :featured-projects="featuredProjects"
+      @open="toProjects"
+    />
+
+    <AsyncProjectModal v-if="modalActive" v-model="modalActive" :project="currentProject" />
+
+  </main>
 </template>

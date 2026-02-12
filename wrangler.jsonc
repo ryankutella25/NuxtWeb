@@ -1,0 +1,8 @@
+{
+  "name": "test-work-please",
+  "main": ".output/server/index.mjs",
+  "compatibility_date": "2026-02-12",
+  "assets": {
+    "directory": ".output/public"
+  }
+}
