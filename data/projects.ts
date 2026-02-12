@@ -31,7 +31,7 @@ const slugify = (value: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-const featuredIds = new Set([1, 2, 11, 7]);
+const featuredIds = new Set([0, 1, 2]);
 
 const baseProjects: BaseProject[] = [{
     itemNum: 0,

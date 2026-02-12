@@ -12,6 +12,22 @@ export type Experience = {
   bullets: string[];
 };
 
+export type AboutIntro = {
+  heading: string;
+  paragraphs: string[];
+};
+
+export const aboutIntro: AboutIntro = {
+  heading: "Software Developer Focused on Solving Problems Efficiently",
+  paragraphs: [
+    "I’m Ryan Kutella from Elk Grove Village, IL, and a senior studying Computer Science at the University of Alabama.",
+    "I’ve been programming for 7+ years since my freshman year of high school, and I enjoy turning complex ideas into real-world software solutions.",
+    "At Mercedes-Benz U.S. International, I helped build and maintain internal applications that improved plant operations. I worked with C#, Microsoft SQL Server, Azure Functions, and Power BI to automate workflows, improve data visibility, and support faster, data-driven decisions.",
+    "At Abbott Rubber Co., I contributed to designing, building, and optimizing customer-facing web solutions, including a new eCommerce site. I also supported day-to-day IT operations, including troubleshooting software issues, resolving hardware problems, and assisting employees with technical support needs across teams.",
+    "Outside of work, I like building personal projects that help simplify and organize my own life. I also enjoy spending time playing sports, weight-lifting, and exploring new topics across tech and beyond.",
+  ],
+};
+
 export const skillGroups: SkillGroup[] = [
   {
     title: "Languages",

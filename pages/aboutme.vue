@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { experiences, skillGroups } from "~/data/aboutData";
+import { aboutIntro, experiences, skillGroups } from "~/data/aboutData";
 
 useHead({
   title: "About Ryan Kutella",
@@ -23,14 +23,13 @@ useHead({
     <SectionCard class="mt-4 grid gap-6 rounded-3xl bg-slate-950/70 p-5 shadow-2xl shadow-black/30 sm:mt-6 md:grid-cols-[1.2fr_0.8fr] md:p-10">
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">About Me</p>
-        <h1 class="mt-3 text-2xl font-semibold leading-tight text-slate-50 sm:text-4xl">Software Developer Focused on Practical Impact</h1>
-        <p class="mt-4 text-sm leading-relaxed text-slate-300 sm:text-base">
-          I am Ryan Kutella from Elk Grove Village, IL. I am currently pursuing Computer Science at the University of Alabama.
-          I enjoy taking complex problems and turning them into clear, reliable software experiences.
-        </p>
-        <p class="mt-3 text-sm leading-relaxed text-slate-300 sm:text-base">
-          I have been building software for over 7 years and have worked across web products, mobile experiences, and systems-level coursework.
-          My priority is always the same: ship clean, useful solutions that are easy to maintain.
+        <h1 class="mt-3 text-2xl font-semibold leading-tight text-slate-50 sm:text-4xl">{{ aboutIntro.heading }}</h1>
+        <p
+          v-for="(paragraph, index) in aboutIntro.paragraphs"
+          :key="paragraph"
+          :class="index === 0 ? 'mt-4 text-sm leading-relaxed text-slate-300 sm:text-base' : 'mt-3 text-sm leading-relaxed text-slate-300 sm:text-base'"
+        >
+          {{ paragraph }}
         </p>
         
         <div class="mt-5 grid grid-cols-4 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
