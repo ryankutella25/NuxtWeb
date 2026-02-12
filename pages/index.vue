@@ -13,6 +13,7 @@ useHead({
   ],
 });
 
+
 const currentProject = ref<Project>(projects[0]);
 const modalActive = ref(false);
 
