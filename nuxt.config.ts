@@ -2,7 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   compatibilityDate: '2026-02-11',
-  css: ['~/assets/css/tailwind.css'],
+  modules: ['@nuxt/image'],
+  css: ['~/tailwind.css'],
+  image: {
+    quality: 80,
+    format: ['webp'],
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -22,7 +27,6 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
         { rel: 'manifest', crossorigin: 'use-credentials', href: '/site.webmanifest' },
-        { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
       ],
     },
   },

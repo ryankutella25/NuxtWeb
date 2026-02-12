@@ -1,4 +1,18 @@
-export const skillGroups = [
+export type SkillGroup = {
+  title: string;
+  items: string[];
+};
+
+export type Experience = {
+  role: string;
+  company: string;
+  startDate: string;
+  endDate: string;
+  dateRange: string;
+  bullets: string[];
+};
+
+export const skillGroups: SkillGroup[] = [
   {
     title: "Languages",
     items: ["JavaScript", "TypeScript", "Python", "Java", "C++", "C#", "SQL", "HTML/CSS"],
@@ -13,7 +27,7 @@ export const skillGroups = [
   },
 ];
 
-export const experiences = [
+const experienceItems: Omit<Experience, "dateRange">[] = [
   {
     role: "Software Engineer Co-op",
     company: "Mercedes Benz U.S. International",
@@ -39,3 +53,8 @@ export const experiences = [
     ],
   },
 ];
+
+export const experiences: Experience[] = experienceItems.map((item) => ({
+  ...item,
+  dateRange: `${item.startDate} - ${item.endDate}`,
+}));

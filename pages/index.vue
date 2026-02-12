@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import projects from "~/components/projects.js";
+import projects from "~/data/projects";
+import type { Project } from "~/data/projects";
 
 useHead({
   title: "Ryan Kutella's Portfolio",
@@ -12,30 +13,44 @@ useHead({
   ],
 });
 
-const currentProject = useProjectOpen();
-const modalActive = useModalActive();
+const currentProject = ref<Project>(projects[0]);
+const modalActive = ref(false);
 
-const featuredProjects = computed(() =>
-  projects
+const featuredProjects = computed(() => {
+  const configuredFeatured = projects.filter((item) => item.featured);
+  if (configuredFeatured.length >= 3) {
+    return configuredFeatured.slice(0, 3);
+  }
+
+  return projects
     .filter((item) => item.itemNum !== 0)
-    .sort((a, b) => Number(Boolean(b.goTo || b.git || b.video)) - Number(Boolean(a.goTo || a.git || a.video)))
-    .slice(0, 3),
-);
+    .sort((a, b) => {
+      const aHasLinks = a.links.live || a.links.code || a.links.video ? 1 : 0;
+      const bHasLinks = b.links.live || b.links.code || b.links.video ? 1 : 0;
+      return bHasLinks - aHasLinks;
+    })
+    .slice(0, 3);
+});
 
 const credibilityPoints = [
   "7+ years building software",
   "Computer Science @ University of Alabama",
   "Production experience in ecommerce and internal systems",
+  "End-to-end development across frontend and backend",
+  "Focused on performance, maintainability, and user impact",
+  "Built and shipped projects from concept to deployment",
 ];
 
-const focusAreas = ["Web Applications", "Mobile Experiences", "System Design", "Performance and UX"];
+const toProjects = (itemNum: Project["itemNum"]) => {
+  const selectedProject = projects.find((item) => item.itemNum === itemNum);
+  if (!selectedProject) {
+    return;
+  }
 
-const toProjects = (itemNum: Number) => {
-  currentProject.value = projects[itemNum.valueOf()];
+  currentProject.value = selectedProject;
   modalActive.value = true;
-
-  return navigateTo({ path: "/projects" });
 };
+
 </script>
 
 <template>
@@ -46,65 +61,69 @@ const toProjects = (itemNum: Number) => {
       <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
     </div>
 
-    <section class="mx-auto mt-4 grid w-[94%] max-w-6xl gap-6 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-5 shadow-2xl shadow-black/30 backdrop-blur sm:mt-6 sm:p-6 md:grid-cols-[1.15fr_0.85fr] md:gap-8 md:p-10">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Software Developer</p>
-        <h1 class="mt-3 max-w-[18ch] text-2xl font-semibold leading-tight text-slate-50 sm:text-4xl md:text-5xl">I solve hard problems with thoughtful software.</h1>
-        <p class="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
-          I build products end-to-end, from user-facing interfaces to backend systems. My work focuses on clean architecture,
-          practical UX decisions, and measurable impact.
-        </p>
-
-        <div class="mt-7 flex flex-wrap items-center gap-3">
-          <NuxtLink to="/projects" class="inline-flex w-full items-center justify-center rounded-lg bg-cyan-300 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-cyan-200 sm:w-auto">Explore Projects</NuxtLink>
-          <a href="/RyanKutella.pdf" target="_blank" rel="noreferrer" class="inline-flex w-full items-center justify-center rounded-lg border border-cyan-300/80 px-5 py-2.5 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/10 sm:w-auto">View Resume</a>
-          <NuxtLink to="/aboutme" class="inline-flex w-full items-center justify-center rounded-lg border border-white/20 px-5 py-2.5 text-sm font-semibold text-slate-200 transition hover:bg-white/10 sm:w-auto">About Me</NuxtLink>
-        </div>
-
-        <div class="mt-8 grid gap-3 sm:grid-cols-3">
-          <p v-for="point in credibilityPoints" :key="point" class="rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-slate-300">
-            {{ point }}
-          </p>
-        </div>
+    <section class="relative mx-auto mt-4 grid items-start w-[94%] max-w-6xl gap-5 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-4 shadow-2xl shadow-black/30 backdrop-blur sm:mt-6 sm:gap-6 sm:p-6 md:gap-8 md:p-10">
+      <div class="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
+        <NuxtImg
+          src="/CitySkylineDesktop.webp"
+          alt=""
+          aria-hidden="true"
+          sizes="100vw md:1200px"
+          class="h-full w-full object-cover opacity-90"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/25" />
       </div>
 
-      <div class="relative rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900 to-slate-950 p-4 sm:p-5">
-        <img
-          src="/CitySkylineDesktop.webp"
-          alt="City skyline background"
-          class="h-48 w-full rounded-xl border border-white/10 object-cover opacity-90"
-        >
-        <div class="mt-4">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Current Focus</p>
-          <div class="mt-2 flex flex-wrap gap-2">
-            <span v-for="focus in focusAreas" :key="focus" class="rounded-full border border-white/15 bg-white/[0.02] px-3 py-1 text-xs font-medium text-slate-300">{{ focus }}</span>
-          </div>
+      <div>
+        <div class="mb-3 overflow-hidden rounded-xl border border-white/10 lg:hidden">
+          <NuxtImg
+            src="/CitySkylineMobile.webp"
+          alt=""
+          aria-hidden="true"
+          sizes="100vw md:1200px"
+          class="h-full w-full object-cover opacity-90"
+          />
+        </div>
+        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Software Developer</p>
+        <h1 class="mt-2 max-w-[22ch] text-xl font-semibold leading-tight text-slate-50 sm:mt-3 sm:max-w-[18ch] sm:text-4xl md:text-5xl">I love solving complex problems through critical thinking and software engineering.</h1>
+        <p class="mt-3 max-w-[60ch] text-sm leading-relaxed text-slate-300 sm:text-base">
+          I build clean, reliable software across frontend and backend with a focus on performance and real-world impact.
+        </p>
+
+        <div class="mt-5 flex flex-wrap items-center gap-3 sm:mt-7">
+          <BaseButton to="/projects" variant="primary" :full="true">Explore Projects</BaseButton>
+          <BaseButton to="/aboutme" variant="glass" :full="true">Learn More About Me</BaseButton>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3">
+          <StatChip v-for="point in credibilityPoints" :key="point" :text="point" />
         </div>
       </div>
     </section>
 
-    <section class="mx-auto mt-6 w-[94%] max-w-6xl rounded-2xl border border-white/10 bg-slate-950/60 p-4 backdrop-blur sm:mt-8 sm:p-6">
+    <SectionCard class="mt-6 rounded-3xl sm:mt-8">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 class="text-xl font-semibold text-slate-100 sm:text-2xl">Featured Projects</h2>
           <p class="mt-1 text-sm text-slate-300">Fast snapshot of impact, stack, and implementation quality.</p>
         </div>
-        <NuxtLink to="/projects" class="rounded-md border border-white/20 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10">All Projects</NuxtLink>
+        <BaseButton to="/projects" size="sm">All Projects</BaseButton>
       </div>
 
       <div class="mt-5 grid gap-4 md:grid-cols-3">
-        <article v-for="item in featuredProjects" :key="item.itemNum" class="group rounded-xl border border-white/10 bg-slate-900/70 p-4 transition hover:-translate-y-1 hover:border-cyan-300/50">
-          <h3 class="text-lg font-semibold text-slate-50">{{ item.name }}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-300">{{ item.quickDesc }}</p>
-          <p class="mt-3 text-xs font-medium text-cyan-200/90">{{ item.tech?.join(" • ") }}</p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            <button type="button" class="rounded-md bg-cyan-300 px-3 py-1.5 text-xs font-semibold text-slate-950 transition hover:bg-cyan-200" @click="toProjects(item.itemNum)">Case Study</button>
-            <a v-if="item.goTo" :href="item.goTo" target="_blank" rel="noreferrer" class="rounded-md border border-cyan-300/80 px-3 py-1.5 text-xs font-semibold text-cyan-200 transition hover:bg-cyan-300/10">Live</a>
-            <a v-else-if="item.git" :href="item.git" target="_blank" rel="noreferrer" class="rounded-md border border-cyan-300/80 px-3 py-1.5 text-xs font-semibold text-cyan-200 transition hover:bg-cyan-300/10">Code</a>
-          </div>
-        </article>
+        <ProjectCard
+          v-for="item in featuredProjects"
+          :key="item.itemNum"
+          :project="item"
+          compact
+          @open="toProjects"
+        />
       </div>
-    </section>
+    </SectionCard>
+
+    <ProjectModal v-model="modalActive" :project="currentProject" />
 
   </main>
 </template>

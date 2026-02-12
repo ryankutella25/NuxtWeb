@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import projects from "~/components/projects.js";
+import projects from "~/data/projects";
+import type { Project } from "~/data/projects";
 
 useHead({
   title: "Ryan Kutella's Portfolio",
   meta: [
-    { name: "description", content: "Learn more about me, Ryan Kutella" },
+    { name: "description", content: "Explore Ryan Kutella's software projects." },
   ],
 });
 
@@ -31,22 +32,17 @@ const languages = [
   "Firestore",
 ];
 
-const modalActive = useModalActive();
-const currentProject = useProjectOpen();
+const modalActive = ref(false);
+const currentProject = ref<Project>(projects[0]);
 
 const sortedProjects = computed(() => {
-  const selectedTech = new Set(languagesSelected.value);
+  const selectedTech = new Set(languagesSelected.value.map((item) => item.toLowerCase()));
   const q = searchQuery.value.trim().toLowerCase();
 
   return projects.filter((item) => {
     const matchesTech =
-      selectedTech.size === 0 || item.tech?.some((tech: string) => selectedTech.has(tech));
-    const matchesText =
-      q.length === 0 ||
-      item.name.toLowerCase().includes(q) ||
-      item.quickDesc.toLowerCase().includes(q) ||
-      item.longDesc.toLowerCase().includes(q) ||
-      item.tech?.some((tech: string) => tech.toLowerCase().includes(q));
+      selectedTech.size === 0 || item.tech.some((tech) => selectedTech.has(tech.toLowerCase()));
+    const matchesText = q.length === 0 || item.searchableText.includes(q);
 
     return Boolean(matchesTech && matchesText);
   });
@@ -77,8 +73,13 @@ const clearLanguageFilters = () => {
   languagesSelected.value = [];
 };
 
-const seeMore = (itemNum: Number) => {
-  currentProject.value = projects[itemNum.valueOf()];
+const seeMore = (itemNum: Project["itemNum"]) => {
+  const selectedProject = projects.find((item) => item.itemNum === itemNum);
+  if (!selectedProject) {
+    return;
+  }
+
+  currentProject.value = selectedProject;
   modalActive.value = true;
 };
 
@@ -118,7 +119,7 @@ onBeforeUnmount(() => {
       <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
     </div>
 
-    <section class="relative z-30 mx-auto mt-4 w-[94%] max-w-6xl rounded-3xl border border-white/10 bg-slate-950/70 p-5 shadow-2xl shadow-black/30 backdrop-blur sm:mt-6 sm:p-6">
+    <SectionCard tone="gradient" class="relative z-30 mt-4 rounded-3xl p-5 shadow-2xl shadow-black/30 sm:mt-6">
       <h1 class="text-2xl font-semibold text-slate-100 sm:text-3xl">Projects</h1>
       <p class="mt-2 text-sm text-slate-300 sm:text-base">Browse by technologies or keywords to quickly find related projects.</p>
 
@@ -185,123 +186,17 @@ onBeforeUnmount(() => {
       </div>
 
       <p class="mt-3 text-sm text-slate-400">Showing {{ sortedProjects.length }} of {{ projects.length }} projects</p>
-    </section>
+    </SectionCard>
 
     <section class="relative z-10 mx-auto mt-6 grid w-[94%] max-w-6xl gap-4 sm:grid-cols-2">
-      <article
+      <ProjectCard
         v-for="item in sortedProjects"
         :key="item.itemNum"
-        class="group relative flex min-h-[340px] cursor-pointer flex-col rounded-2xl border border-white/10 bg-slate-900/70 p-5 transition hover:-translate-y-0.5 hover:border-cyan-300/50"
-        @click="seeMore(item.itemNum)"
-      >
-        <button
-          type="button"
-          class="absolute right-4 top-4 inline-flex items-center rounded-md p-1 text-slate-300 transition hover:bg-white/10 hover:text-cyan-200"
-          aria-label="Show More"
-          @click.stop="seeMore(item.itemNum)"
-        >
-          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M7 3H3v4M13 3h4v4M7 17H3v-4M17 13v4h-4" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
-
-        <h2 class="pr-16 text-xl font-semibold text-slate-50">{{ item.name }}</h2>
-
-        <div class="mt-3 flex flex-wrap gap-2">
-          <span class="rounded-full border border-white/15 bg-white/[0.03] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-300">{{ item.type }}</span>
-          <span class="rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-cyan-200">{{ item.tech?.length || 0 }} technologies</span>
-          <span class="rounded-full border border-white/15 bg-white/[0.03] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-300">{{ item.goTo || item.git || item.video ? "External links" : "Details only" }}</span>
-        </div>
-
-        <p class="mt-4 flex-1 text-sm leading-relaxed text-slate-300">{{ item.longDesc }}</p>
-        <p class="mt-3 text-xs font-medium text-cyan-200/90">{{ item.tech?.join(", ") }}</p>
-
-        <div class="mt-4 flex flex-wrap gap-2">
-          <a
-            v-if="item.goTo"
-            class="inline-flex items-center rounded-md bg-cyan-300 px-3 py-1.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-            aria-label="Go To Project"
-            :href="item.goTo"
-            target="_blank"
-            rel="noreferrer"
-            @click.stop
-          >Live</a>
-          <a
-            v-if="item.git"
-            class="inline-flex items-center rounded-md border border-cyan-300 px-3 py-1.5 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/10"
-            aria-label="Go To Github"
-            :href="item.git"
-            target="_blank"
-            rel="noreferrer"
-            @click.stop
-          >Code</a>
-          <a
-            v-if="item.video"
-            class="inline-flex items-center rounded-md border border-cyan-300 px-3 py-1.5 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-300/10"
-            aria-label="Go To Video"
-            :href="item.video"
-            target="_blank"
-            rel="noreferrer"
-            @click.stop
-          >Video</a>
-        </div>
-      </article>
+        :project="item"
+        @open="seeMore"
+      />
     </section>
 
-    <div v-if="modalActive" class="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <button
-        type="button"
-        aria-label="Close project details"
-        class="absolute inset-0 bg-black/70"
-        @click="modalActive = false"
-      />
-      <div class="relative z-10 flex h-[min(74vh,560px)] w-full max-w-3xl flex-col rounded-2xl border border-white/10 bg-slate-950 p-5 sm:p-6">
-        <button
-          type="button"
-          aria-label="Close project details"
-          class="absolute right-5 top-5 inline-flex items-center rounded-md p-0.5 text-slate-300 transition hover:bg-white/10 hover:text-cyan-200 sm:right-6 sm:top-6"
-          @click="modalActive = false"
-        >
-          <svg class="h-7 w-7" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M5 5l10 10M15 5L5 15" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
-
-        <h3 class="pr-14 text-2xl font-semibold leading-none text-slate-50 sm:pr-16 sm:text-3xl">{{ currentProject.name }}</h3>
-
-        <div class="mt-5 flex-1 overflow-auto pr-1">
-          <p class="text-base leading-relaxed text-slate-300 sm:text-lg">{{ currentProject.longDesc }}</p>
-        </div>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a
-            v-if="currentProject.goTo"
-            class="inline-flex items-center rounded-md bg-cyan-300 px-4 py-2 text-base font-semibold text-slate-950 transition hover:bg-cyan-200"
-            aria-label="Go To Project"
-            :href="currentProject.goTo"
-            target="_blank"
-            rel="noreferrer"
-          >Live</a>
-          <a
-            v-if="currentProject.git"
-            class="inline-flex items-center rounded-md border border-cyan-300 px-4 py-2 text-base font-semibold text-cyan-200 transition hover:bg-cyan-300/10"
-            aria-label="Go To Github"
-            :href="currentProject.git"
-            target="_blank"
-            rel="noreferrer"
-          >Code</a>
-          <a
-            v-if="currentProject.video"
-            class="inline-flex items-center rounded-md border border-cyan-300 px-4 py-2 text-base font-semibold text-cyan-200 transition hover:bg-cyan-300/10"
-            aria-label="Go To Video"
-            :href="currentProject.video"
-            target="_blank"
-            rel="noreferrer"
-          >Video</a>
-        </div>
-
-        <p class="mt-5 text-sm font-semibold text-cyan-200 sm:text-base">Used: {{ currentProject.tech?.join(", ") }}</p>
-      </div>
-    </div>
+    <ProjectModal v-model="modalActive" :project="currentProject" />
   </main>
 </template>
