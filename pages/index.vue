@@ -68,7 +68,9 @@ const toProjects = (itemNum: Project["itemNum"]) => {
           src="/CitySkylineDesktop.webp"
           alt=""
           aria-hidden="true"
-          sizes="(max-width: 1024px) 90vw, 1200px"
+          sizes="100vw lg:1200px"
+          width="1200"
+          height="675"
           class="h-full w-full object-cover opacity-90"
         />
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/25" />
@@ -80,10 +82,12 @@ const toProjects = (itemNum: Project["itemNum"]) => {
             src="/CitySkylineMobile.webp"
             alt=""
             aria-hidden="true"
-            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 86vw, 1200px"
+            sizes="100vw sm:92vw md:86vw"
             preload
             loading="eager"
             fetchpriority="high"
+            width="1200"
+            height="675"
             class="h-full w-full object-cover opacity-90"
           />
         </div>

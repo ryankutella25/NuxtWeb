@@ -4,6 +4,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-02-11',
   modules: ['@nuxt/image'],
   css: ['~/tailwind.css'],
+  routeRules: {
+    "/": { prerender: true },
+    "/aboutme": { prerender: true },
+    "/projects": { prerender: true },
+  },
   image: {
     quality: 80,
     format: ['webp'],
