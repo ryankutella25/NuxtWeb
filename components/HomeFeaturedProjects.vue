@@ -6,7 +6,7 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "open", itemNum: number): void;
+  (e: "open", project: Project): void;
 }>();
 </script>
 
@@ -25,7 +25,7 @@ const emit = defineEmits<{
         :key="item.itemNum"
         :project="item"
         compact
-        @open="(itemNum) => emit('open', itemNum)"
+        @open="(project) => emit('open', project)"
       />
     </div>
   </SectionCard>

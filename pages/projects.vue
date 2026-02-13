@@ -9,6 +9,7 @@ useHead({
   ],
 });
 
+// This is for searching and dropdown
 const languagesSelected = ref<string[]>([]);
 const searchQuery = ref("");
 const languageDropdownOpen = ref(false);
@@ -32,8 +33,10 @@ const languages = [
   "Firestore",
 ];
 
+// currentProject is the project to show in modal
+// modalActive is if the modal is visible
+const currentProject = ref<Project | null>(projects[0] ?? null);
 const modalActive = ref(false);
-const currentProject = ref<Project>(projects[0]);
 
 const sortedProjects = computed(() => {
   const selectedTech = new Set(languagesSelected.value.map((item) => item.toLowerCase()));
@@ -73,13 +76,8 @@ const clearLanguageFilters = () => {
   languagesSelected.value = [];
 };
 
-const seeMore = (itemNum: Project["itemNum"]) => {
-  const selectedProject = projects.find((item) => item.itemNum === itemNum);
-  if (!selectedProject) {
-    return;
-  }
-
-  currentProject.value = selectedProject;
+const seeMore = (project: Project) => {
+  currentProject.value = project;
   modalActive.value = true;
 };
 

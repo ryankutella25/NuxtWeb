@@ -11,10 +11,10 @@ const props = withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
-  (e: "open", itemNum: number): void;
+  (e: "open", project: Project): void;
 }>();
 
-const onOpen = () => emit("open", props.project.itemNum);
+const onOpen = () => emit("open", props.project);
 const onLinkClick = (event: MouseEvent) => {
   event.stopPropagation();
 };

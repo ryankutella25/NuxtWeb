@@ -3,24 +3,24 @@ import type { Project } from "~/data/projects";
 
 const props = defineProps<{
   modelValue: boolean;
-  project: Project;
+  project: Project | null;
 }>();
 
-const emit = defineEmits<{
-  (e: "update:modelValue", value: boolean): void;
-}>();
+// Emit is how we send info from child to parent
+const emit = defineEmits<{(e: "update:modelValue", value: boolean): void;}>();
 
+// Tell parent to close modal
 const close = () => emit("update:modelValue", false);
 </script>
 
 <template>
-  <div v-if="modelValue" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div v-if="modelValue && project" class="fixed inset-0 z-50 flex items-center justify-center p-4">
     <button
       type="button"
       aria-label="Close project details"
       class="absolute inset-0 bg-black/70"
       @click="close"
-    />
+    ></button>
     <div class="relative z-10 flex h-[min(74vh,560px)] w-full max-w-3xl flex-col rounded-2xl border border-white/10 bg-slate-950 p-5 sm:p-6">
       <button
         type="button"

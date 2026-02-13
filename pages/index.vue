@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import projects from "~/data/projects";
 import type { Project } from "~/data/projects";
-import { defineAsyncComponent } from "vue";
+import ProjectModal from "~/components/ProjectModal.vue";
 
 useHead({
   title: "Ryan Kutella's Portfolio",
@@ -14,26 +14,13 @@ useHead({
   ]
 });
 
-
-const currentProject = ref<Project>(projects[0]);
+// currentProject is the project to show in modal
+// modalActive is if the modal is visible
+const currentProject = ref<Project | null>(projects[0] ?? null);
 const modalActive = ref(false);
-const AsyncProjectModal = defineAsyncComponent(() => import("~/components/ProjectModal.vue"));
 
-const featuredProjects = (() => {
-  const configuredFeatured = projects.filter((item) => item.featured);
-  if (configuredFeatured.length >= 3) {
-    return configuredFeatured.slice(0, 3) as Project[];
-  }
-
-  return projects
-    .filter((item) => item.itemNum !== 0)
-    .sort((a, b) => {
-      const aHasLinks = a.links.live || a.links.code || a.links.video ? 1 : 0;
-      const bHasLinks = b.links.live || b.links.code || b.links.video ? 1 : 0;
-      return bHasLinks - aHasLinks;
-    })
-    .slice(0, 3) as Project[];
-})();
+// First 3 featured projects to show
+const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 
 const credibilityPoints = [
   "Software Developer Co-op @ Mercedes Benz U.S.",
@@ -44,13 +31,8 @@ const credibilityPoints = [
   "Strong collaboration, ownership, and communication skills",
 ];
 
-const toProjects = (itemNum: Project["itemNum"]) => {
-  const selectedProject = projects.find((item) => item.itemNum === itemNum);
-  if (!selectedProject) {
-    return;
-  }
-
-  currentProject.value = selectedProject;
+const openModal = (project: Project) => {
+  currentProject.value = project;
   modalActive.value = true;
 };
 
@@ -114,10 +96,10 @@ const toProjects = (itemNum: Project["itemNum"]) => {
     <LazyHomeFeaturedProjects
       class="mt-6 rounded-3xl sm:mt-8 [content-visibility:auto] [contain-intrinsic-size:1px_800px]"
       :featured-projects="featuredProjects"
-      @open="toProjects"
+      @open="openModal"
     />
 
-    <AsyncProjectModal v-if="modalActive" v-model="modalActive" :project="currentProject" />
+    <ProjectModal v-if="modalActive" v-model="modalActive" :project="currentProject" />
 
   </main>
 </template>
