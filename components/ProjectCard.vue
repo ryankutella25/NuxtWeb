@@ -4,8 +4,10 @@ import type { Project } from "~/data/projects";
 const props = withDefaults(defineProps<{
   project: Project;
   compact?: boolean;
+  headingTag?: "h2" | "h3";
 }>(), {
   compact: false,
+  headingTag: "h3",
 });
 
 const emit = defineEmits<{
@@ -48,9 +50,12 @@ const onLinkClick = (event: MouseEvent) => {
       </svg>
     </button>
 
-    <h3 :class="compact ? 'pr-10 text-lg font-semibold text-slate-50' : 'pr-16 text-xl font-semibold text-slate-50'">
+    <component
+      :is="headingTag"
+      :class="compact ? 'pr-10 text-lg font-semibold text-slate-50' : 'pr-16 text-xl font-semibold text-slate-50'"
+    >
       {{ project.name }}
-    </h3>
+    </component>
 
     <div v-if="!compact" class="mt-3 flex flex-wrap gap-2">
       <span class="rounded-full border border-white/15 bg-white/[0.03] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-300">{{ project.type }}</span>

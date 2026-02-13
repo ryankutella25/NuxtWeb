@@ -193,6 +193,7 @@ onBeforeUnmount(() => {
         v-for="item in sortedProjects"
         :key="item.itemNum"
         :project="item"
+        heading-tag="h2"
         @open="seeMore"
       />
     </section>
